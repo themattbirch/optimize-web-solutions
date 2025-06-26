@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "optimize-web-solutions",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.2.2",
     "astro": "^5.10.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.1",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
