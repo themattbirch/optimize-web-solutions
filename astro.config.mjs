@@ -1,13 +1,18 @@
 import { defineConfig } from "astro/config";
-import node from "@astrojs/node";
-import tailwind from "@astrojs/tailwind"; // Use the official Astro integration
-
+import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
+// https://astro.build/config
 export default defineConfig({
+  // This is the key change that enables Static Site Generation (SSG)
+  output: "static",
+
   site: "https://optimizewebsolutions.com",
-  adapter: node({
-    mode: "standalone",
-  }),
-  integrations: [tailwind(), react()],
+
+  integrations: [
+    tailwind(),
+    react(),
+    sitemap(), // Automatically generates a sitemap.xml for SEO
+  ],
 });
