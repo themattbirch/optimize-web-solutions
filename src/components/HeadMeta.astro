@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage: string;
+  canonicalURL: string;
+}
+
+const { title, description, ogImage, canonicalURL } = Astro.props;
+
+// --- Fallback values updated for Optimize Web Solutions ---
+const resolvedTitle =
+  title || "Optimize Web Solutions | Custom Web Development";
+const resolvedDescription =
+  description ||
+  "Fast, modern, and optimized websites for small businesses in Northern Virginia.";
+const resolvedOgImage =
+  ogImage || new URL("/default-og-image.png", Astro.site).toString(); // A default OG image
+const resolvedCanonicalURL =
+  canonicalURL || new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<title>{resolvedTitle}</title>
+<meta name="description" content={resolvedDescription} />
+<link rel="canonical" href={resolvedCanonicalURL} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Optimize Web Solutions" />
+<meta property="og:url" content={resolvedCanonicalURL} />
+<meta property="og:title" content={resolvedTitle} />
+<meta property="og:description" content={resolvedDescription} />
+<meta property="og:image" content={resolvedOgImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@optimizewebnow" />
+<meta name="twitter:creator" content="@optimizewebnow" />
+<meta name="twitter:domain" content="optimizewebsolutions.com" />
+<meta name="twitter:url" content={resolvedCanonicalURL} />
+<meta name="twitter:title" content={resolvedTitle} />
+<meta name="twitter:description" content={resolvedDescription} />
+<meta name="twitter:image" content={resolvedOgImage} />
+<meta name="twitter:image:alt" content={resolvedTitle} />
+
+<meta name="theme-color" content="#FF9900" />
+<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />

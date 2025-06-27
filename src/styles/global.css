@@ -1,0 +1,51 @@
+/* =============================================== */
+/* Custom Mobile Menu Styles & Animations          */
+/* =============================================== */
+
+/* --- The Main Dropdown Panel --- */
+#mobile-menu {
+  /* This uses a fixed position to overlay content */
+  @apply absolute top-full left-0 right-0 z-20;
+
+  /* Fallback background, you can customize this */
+  background-color: #121212;
+
+  /* These properties are for the animation */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-0.75rem);
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out,
+    visibility 0s linear 0.3s; /* Delay hides after fade-out */
+}
+
+/* OPEN state for the mobile menu */
+#mobile-menu.mobile-menu-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out,
+    visibility 0s;
+}
+
+/* Staggered animation for menu items */
+.mobile-menu-item {
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

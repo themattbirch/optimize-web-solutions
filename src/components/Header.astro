@@ -1,0 +1,144 @@
+---
+// src/components/Header.astro
+import { Image } from "astro:assets";
+import logo from "../assets/images/optimize-web-solutions-logo.png";
+import OpenIcon from "./OpenIcon.astro";
+import CloseIcon from "./CloseIcon.astro";
+import ThemeToggle from "./ThemeToggle.jsx";
+
+// Data for our navigation links
+const menuItems = [
+  { title: "Home", path: "/" },
+  { title: "About", path: "/about" },
+  { title: "Services", path: "/services" },
+];
+---
+
+<header class="relative py-6">
+  <div
+    class="container mx-auto max-w-screen-xl px-4 flex justify-between items-center"
+  >
+    <a href="/">
+      <Image src={logo} alt="Optimize Web Solutions Logo" width="180" />
+    </a>
+
+    <nav class="hidden md:flex">
+      <ul class="flex items-center space-x-6 font-heading">
+        <li class="mr-4"><ThemeToggle client:load /></li>
+        {
+          menuItems.map((item) => (
+            <li>
+              <a
+                href={item.path}
+                class="hover:text-accent-secondary transition-colors duration-300"
+              >
+                {item.title}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a
+            href="/contact"
+            class="bg-accent-primary text-background font-bold py-2 px-4 rounded-md hover:bg-orange-600 transition-colors duration-300"
+            >Contact Us</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="md:hidden flex items-center">
+      <ThemeToggle client:load />
+      <button
+        id="mobile-menu-button"
+        class="text-white p-2 ml-2"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <OpenIcon class="open-icon block h-6 w-6" />
+        <CloseIcon class="close-icon hidden h-6 w-6" />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="container mx-auto max-w-screen-xl px-4">
+    <ul class="flex flex-col pt-2 pb-4 font-heading">
+      {
+        menuItems.map((item, index) => (
+          <li
+            class="mobile-menu-item"
+            style={`animation-delay: ${index * 0.07}s`}
+          >
+            <a
+              href={item.path}
+              class="block py-3 text-lg hover:text-accent-secondary transition-colors duration-300"
+            >
+              {item.title}
+            </a>
+          </li>
+        ))
+      }
+      <li
+        class="mobile-menu-item"
+        style={`animation-delay: ${menuItems.length * 0.07}s`}
+      >
+        <a
+          href="/contact"
+          class="block mt-2 py-3 px-5 text-lg bg-accent-primary text-background text-center rounded-md hover:bg-orange-600 transition-colors duration-300"
+          >Contact Us</a
+        >
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  function setupNavbar() {
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    // Note: We target classes now, not component names
+    const openIcon = document.querySelector(".open-icon");
+    const closeIcon = document.querySelector(".close-icon");
+
+    if (!mobileMenuButton || !mobileMenu || !openIcon || !closeIcon) {
+      return;
+    }
+
+    const toggleMainMenu = () => {
+      const isOpening = !mobileMenu.classList.contains("mobile-menu-open");
+      mobileMenu.classList.toggle("mobile-menu-open");
+      openIcon.classList.toggle("hidden", isOpening);
+      closeIcon.classList.toggle("hidden", !isOpening);
+      mobileMenuButton.setAttribute("aria-expanded", String(isOpening));
+    };
+
+    mobileMenuButton.addEventListener("click", toggleMainMenu);
+
+    const handleResize = () => {
+      if (
+        window.innerWidth >= 768 &&
+        mobileMenu.classList.contains("mobile-menu-open")
+      ) {
+        toggleMainMenu(); // Close mobile menu on resize to desktop
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function for Astro's View Transitions
+    return () => {
+      mobileMenuButton.removeEventListener("click", toggleMainMenu);
+      window.removeEventListener("resize", handleResize);
+    };
+  }
+
+  // Run setup and manage cleanup on page navigation
+  let cleanupNavbar = setupNavbar();
+  document.addEventListener("astro:after-swap", () => {
+    if (typeof cleanupNavbar === "function") {
+      cleanupNavbar();
+    }
+    cleanupNavbar = setupNavbar();
+  });
+</script>

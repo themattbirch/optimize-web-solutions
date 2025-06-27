@@ -1,11 +1,13 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import node from "@astrojs/node";
+import tailwind from "@astrojs/tailwind"; // Use the official Astro integration
 
-import node from '@astrojs/node';
+import react from "@astrojs/react";
 
-// https://astro.build/config
 export default defineConfig({
+  site: "https://optimizewebsolutions.com",
   adapter: node({
-    mode: 'standalone'
-  })
+    mode: "standalone",
+  }),
+  integrations: [tailwind(), react()],
 });
