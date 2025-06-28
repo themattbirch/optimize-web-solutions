@@ -1,4 +1,5 @@
 ---
+// src/layouts/Layout.astro
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -140,9 +141,7 @@ const finalOgImage = image
     class="min-h-screen flex flex-col text-base sm:text-lg md:text-xl antialiased"
   >
     <Header />
-    <main
-      class={fullWidth ? "w-full" : "max-w-8xl mx-auto px-4 sm:px-6 lg:px-8"}
-    >
+    <main>
       <slot />
     </main>
     <Footer />

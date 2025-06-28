@@ -1,3 +1,5 @@
+// tailwind.config.mjs
+
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */

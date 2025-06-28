@@ -1,0 +1,56 @@
+---
+//src/components/HeroSection.astro
+import { Image } from "astro:assets";
+
+// --- IMPORTANT ---
+// To use your own image, place it in `src/assets/images/`
+// and update the import path below.
+import heroBackgroundImage from "../assets/images/ows-hero-image.jpg";
+---
+
+<section
+  class="relative bg-cover bg-center bg-no-repeat text-white"
+  style={`background-image: url(${heroBackgroundImage.src})`}
+>
+  <div class="absolute inset-0 bg-background/70"></div>
+
+  <div
+    class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+  >
+    <div class="mx-auto max-w-3xl text-center">
+      <h1
+        class="font-heading text-4xl font-extrabold sm:text-6xl text-shadow-lg"
+      >
+        Modern Web Design
+        <span class="sm:block"> With a Creative Spin. </span>
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-xl sm:text-xl/relaxed text-white/90">
+        We build user-friendly, high-performance websites that differentiate
+        your business from the competition.
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          class="block w-full rounded-lg bg-accent-primary px-12 py-4 text-lg font-bold text-background shadow transition-transform duration-300 hover:scale-105 hover:bg-orange-600 focus:outline-none focus:ring sm:w-auto"
+          href="/contact"
+        >
+          Get Help Now
+        </a>
+
+        <a
+          class="block w-full rounded-lg border border-accent-secondary px-12 py-4 text-lg font-medium text-accent-secondary shadow transition-transform duration-300 hover:scale-105 hover:bg-accent-secondary hover:text-background focus:outline-none focus:ring sm:w-auto"
+          href="/services"
+        >
+          Learn More
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .text-shadow-lg {
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  }
+</style>
