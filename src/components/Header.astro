@@ -15,14 +15,7 @@ const links = [
 
 <header
   id="site-header"
-  class="sticky top-0 z-50 w-full transition-colors duration-300
-  
-  data-[state=scrolled]:bg-white
-  data-[state=scrolled]:shadow-sm
-  dark:data-[state=scrolled]:bg-gray-950
-  data-[state=on-hero]:bg-white
-  dark:data-[state=on-hero]:bg-transparent
-  dark:data-[state=on-hero]:shadow-none"
+  class="sticky top-0 z-50 w-full bg-white dark:bg-gray-950 shadow-sm transition-colors duration-300"
 >
   <div
     class="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4 md:py-5"
@@ -31,6 +24,7 @@ const links = [
       <Image src={lightLogo} alt="" width="160" class="block dark:hidden" />
       <Image src={darkLogo} alt="" width="160" class="hidden dark:block" />
     </a>
+
     <div class="flex items-center gap-4">
       <ThemeToggle client:load />
       <nav class="hidden md:block">
@@ -40,7 +34,7 @@ const links = [
               <li>
                 <a
                   href={l.path}
-                  class="header-link relative text-gray-800 dark:text-gray-200 dark:data-[state=on-hero]:text-white after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-0 after:bg-accent-secondary after:transition-[width] after:duration-300 hover:after:w-full"
+                  class="header-link relative text-gray-800 dark:text-gray-200 after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-0 after:bg-accent-secondary after:transition-[width] after:duration-300 hover:after:w-full"
                 >
                   {l.title}
                 </a>
@@ -58,15 +52,9 @@ const links = [
         </ul>
       </nav>
       <button id="mobile-toggle" class="p-2 md:hidden">
-        <span
-          class="block h-0.5 w-6 bg-gray-800 dark:bg-gray-200 dark:data-[state=on-hero]:bg-white"
-        ></span>
-        <span
-          class="my-1 block h-0.5 w-6 bg-gray-800 dark:bg-gray-200 dark:data-[state=on-hero]:bg-white"
-        ></span>
-        <span
-          class="block h-0.5 w-6 bg-gray-800 dark:bg-gray-200 dark:data-[state=on-hero]:bg-white"
-        ></span>
+        <span class="block h-0.5 w-6 bg-gray-800 dark:bg-gray-200"></span>
+        <span class="my-1 block h-0.5 w-6 bg-gray-800 dark:bg-gray-200"></span>
+        <span class="block h-0.5 w-6 bg-gray-800 dark:bg-gray-200"></span>
       </button>
     </div>
   </div>
@@ -74,36 +62,62 @@ const links = [
 
 <script>
   const header = document.getElementById("site-header");
+
+  // FIX: The entire logic is now inside this `if` block.
+  // This tells TypeScript that 'header' can't be null here.
   if (header) {
-    const setHeaderState = () => {
+    const setHeaderAppearance = () => {
       const hero = document.querySelector(".-mt-24");
-      // The script now ONLY sets the state. Nothing else.
+
       if (window.scrollY < 10 && hero) {
-        header.dataset.state = "on-hero";
+        header.classList.add("on-hero");
       } else {
-        header.dataset.state = "scrolled";
+        header.classList.remove("on-hero");
       }
     };
 
-    // We need to re-run this check if the theme changes
-    const themeToggle = document.querySelector("theme-toggle");
-    if (themeToggle) {
-      // This assumes your ThemeToggle component has an id or can be selected.
-      // A better way is to listen for a custom event from the component.
-      // For now, let's just observe class changes on <html> as a fallback.
-      new MutationObserver(() => setHeaderState()).observe(
-        document.documentElement,
-        {
-          attributes: true,
-          attributeFilter: ["class"],
-        },
-      );
-    }
+    const onPageLoad = () => {
+      setHeaderAppearance();
+      document.addEventListener("scroll", setHeaderAppearance, {
+        passive: true,
+      });
+    };
 
-    // Run on page load and on scroll
-    window.addEventListener("load", () => {
-      setHeaderState();
-      document.addEventListener("scroll", setHeaderState, { passive: true });
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", onPageLoad);
+    } else {
+      onPageLoad();
+    }
+  }
+</script>
+
+<style>
+  /* FIX: These styles ONLY apply in dark mode AND when the 'on-hero' class is present. */
+  /* In light mode, this rule is ignored, so the header stays white. */
+  .dark .on-hero {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* When transparent in dark mode, make links white */
+  .dark .on-hero .header-link {
+    color: white;
+  }
+
+  /* When transparent in dark mode, make hamburger icon white */
+  .dark .on-hero #mobile-toggle span {
+    background-color: white;
+  }
+</style>
+
+<script is:inline>
+  const btn = document.getElementById("mobile-toggle");
+  const panel = document.getElementById("mobile-panel");
+  if (btn && panel) {
+    btn.addEventListener("click", () => {
+      const open = panel.style.transform === "scaleY(1)";
+      panel.style.transform = open ? "scaleY(0)" : "scaleY(1)";
+      btn.setAttribute("aria-expanded", String(!open));
     });
   }
 </script>
