@@ -1,27 +1,25 @@
 // tailwind.config.mjs
 
 import { fontFamily } from "tailwindcss/defaultTheme";
+import forms from "@tailwindcss/forms";
 
-/** @type {import('tailwindcss').Config} */
 export default {
-  // This tells Tailwind to scan all your Astro and component files for classes.
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx,vue}"],
   theme: {
     extend: {
       colors: {
-        // Our custom brand colors
         background: "#121212",
-        "accent-primary": "#FF9900", // Orange
-        "accent-secondary": "#00BFFF", // Cyan
+        "accent-primary": "#FF9900",
+        "accent-secondary": "#00BFFF",
         "muted-text": "#888888",
       },
       fontFamily: {
-        // Our custom brand fonts
         heading: ["Poppins", ...fontFamily.sans],
         body: ["Merriweather", ...fontFamily.serif],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    forms(), // now that @tailwindcss/forms is installed
+  ],
 };

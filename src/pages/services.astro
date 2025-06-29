@@ -1,17 +1,259 @@
 ---
-// src/pages/services.astro
+// src/pages/Services.astro
 import Layout from "../layouts/Layout.astro";
+import PortfolioShowcase from "../components/PortfolioShowcase.astro";
 ---
 
 <Layout
   title="Our Services | Optimize Web Solutions"
-  description="Explore our web development services, including custom website design, SEO optimization, and performance tuning, all designed for small business growth."
+  description="Explore our web‑development stack: custom website design, SEO, and performance tuning — all engineered for small‑business growth."
   ogImage="/images/employee-optimize-web-solutions-typing-computer.jpg"
 >
-  <div class="container mx-auto max-w-screen-xl px-4 py-16">
-    <h1 class="text-4xl font-bold">Services</h1>
-    <p class="mt-4 text-muted-text">
-      Content for the services page will go here.
-    </p>
-  </div>
+  {/* ─────────────────────────  HERO  ───────────────────────── */}
+  <section
+    class="relative isolate overflow-hidden bg-gradient-to-br from-background via-background/80 to-background/40 py-24 sm:py-32"
+  >
+    <div class="container mx-auto max-w-screen-xl px-4 text-center">
+      <h1
+        class="font-heading text-4xl font-extrabold tracking-tight sm:text-5xl"
+      >
+        Services That Move the Needle
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-text">
+        Design, optimization, and marketing solutions that turn your website
+        into a 24/7 growth engine.
+      </p>
+      <a
+        href="/contact"
+        class="mt-8 inline-flex items-center justify-center rounded-md bg-accent-primary px-6 py-3 font-medium text-white shadow transition hover:bg-accent-primary/90 focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2"
+      >
+        Book a Free Consult
+      </a>
+    </div>
+  </section>
+
+  {/* ────────────────────  CORE SERVICES GRID  ─────────────────── */}
+  <section class="py-16 sm:py-24">
+    <div class="container mx-auto max-w-screen-xl px-4">
+      <h2 class="text-center font-heading text-3xl font-bold sm:text-4xl">
+        What&nbsp;We&nbsp;Do
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-muted-text">
+        Three pillars, one goal: measurable business growth.
+      </p>
+
+      <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Web Design */}
+        <div
+          class="flex flex-col rounded-lg bg-white/70 p-8 shadow dark:bg-white/5"
+        >
+          <div
+            class="flex h-14 w-14 items-center justify-center rounded-full bg-accent-primary/10"
+          >
+            <!-- Code Bracket Square Icon -->
+            <svg
+              class="h-6 w-6 text-accent-primary"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.5 8.25L21 12l-4.5 3.75m-9-7.5L3 12l4.5 3.75M9.75 21 14.25 3"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold">
+            Custom&nbsp;Web&nbsp;Design
+          </h3>
+          <ul
+            class="mt-4 flex flex-col gap-2 text-sm leading-relaxed text-muted-text"
+          >
+            <li class="flex gap-2"><span>✅</span> Mobile‑first layouts</li>
+            <li class="flex gap-2">
+              <span>✅</span> Lightning‑fast Core Web Vitals
+            </li>
+            <li class="flex gap-2">
+              <span>✅</span> Accessible & SEO‑ready markup
+            </li>
+          </ul>
+        </div>
+
+        {/* Digital Marketing */}
+        <div
+          class="flex flex-col rounded-lg bg-white/70 p-8 shadow dark:bg-white/5"
+        >
+          <div
+            class="flex h-14 w-14 items-center justify-center rounded-full bg-accent-secondary/10"
+          >
+            <!-- Chart Bar Square Icon -->
+            <svg
+              class="h-6 w-6 text-accent-secondary"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3v18h18M7.5 14.25v3.75M12 9v9M16.5 6v12"></path>
+            </svg>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold">
+            SEO & Growth&nbsp;Marketing
+          </h3>
+          <ul
+            class="mt-4 flex flex-col gap-2 text-sm leading-relaxed text-muted-text"
+          >
+            <li class="flex gap-2">
+              <span>✅</span> Keyword & content strategy
+            </li>
+            <li class="flex gap-2"><span>✅</span> GBP setup & optimization</li>
+            <li class="flex gap-2">
+              <span>✅</span> Transparent monthly reports
+            </li>
+          </ul>
+        </div>
+
+        {/* Optimization */}
+        <div
+          class="flex flex-col rounded-lg bg-white/70 p-8 shadow dark:bg-white/5"
+        >
+          <div
+            class="flex h-14 w-14 items-center justify-center rounded-full bg-accent-primary/10"
+          >
+            <!-- Rocket Launch Icon -->
+            <svg
+              class="h-6 w-6 text-accent-primary"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v5.25M17.657 5.343l-3.708 3.708M19.5 12h-5.25M17.657 18.657l-3.708-3.708M12 19.5v-5.25M6.343 17.657l3.708-3.708M4.5 12h5.25M6.343 6.343l3.708 3.708"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold">
+            Performance&nbsp;Optimization
+          </h3>
+          <ul
+            class="mt-4 flex flex-col gap-2 text-sm leading-relaxed text-muted-text"
+          >
+            <li class="flex gap-2"><span>✅</span> Speed audits & fixes</li>
+            <li class="flex gap-2"><span>✅</span> Hosting & CDN tuning</li>
+            <li class="flex gap-2"><span>✅</span> Ongoing maintenance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ────────────────  RESULTS / PORTFOLIO TEASER  ─────────────── */}
+  <section
+    class="bg-accent-secondary/5 py-16 sm:py-24 dark:bg-accent-secondary/10"
+  >
+    <div class="container mx-auto max-w-screen-xl px-4 text-center">
+      <div class="mt-12">
+        <PortfolioShowcase />
+      </div>
+    </div>
+  </section>
+
+  {/* ─────────────────────  PRICING  ───────────────────── */}
+  <section class="py-16 sm:py-24">
+    <div class="container mx-auto max-w-screen-xl px-4">
+      <h2 class="text-center font-heading text-3xl font-bold sm:text-4xl">
+        Transparent&nbsp;Pricing — No Monthly Fees
+      </h2>
+      <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Starter Plan -->
+        <div
+          class="flex flex-col rounded-lg border border-muted-text/20 bg-white/70 p-8 shadow dark:bg-background/50 dark:text-white"
+        >
+          <h3 class="text-xl font-semibold">Starter&nbsp;Site</h3>
+          <p class="mt-2 text-muted-text">Launch‑ready in weeks.</p>
+          <span class="mt-6 text-4xl font-bold tracking-tight">$1,497</span>
+          <ul class="mt-6 flex flex-col gap-2 text-sm">
+            <li class="flex gap-2">✅ 3 pages</li>
+            <li class="flex gap-2">✅ Cloud hosting + SSL</li>
+            <li class="flex gap-2">✅ Two stock images</li>
+          </ul>
+          <a
+            href="/contact"
+            class="mt-auto inline-flex items-center justify-center rounded-md bg-accent-primary px-6 py-3 font-medium text-white shadow transition hover:bg-accent-primary/90 focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2"
+          >
+            Get Started
+          </a>
+        </div>
+
+        <!-- Growth Plan -->
+        <div
+          class="flex flex-col rounded-lg border border-muted-text/20 bg-white/70 p-8 shadow dark:bg-background/50 dark:text-white"
+        >
+          <h3 class="text-xl font-semibold">Growth&nbsp;Package</h3>
+          <p class="mt-2 text-muted-text">Site + SEO foundation.</p>
+          <span class="mt-6 text-4xl font-bold tracking-tight">$2,397</span>
+          <ul class="mt-6 flex flex-col gap-2 text-sm">
+            <li class="flex gap-2">✅ 5 pages</li>
+            <li class="flex gap-2">✅ WordPress SEO setup</li>
+            <li class="flex gap-2">✅ Search‑engine submission</li>
+            <li class="flex gap-2">✅ Everything in Starter</li>
+          </ul>
+          <a
+            href="/contact"
+            class="mt-auto inline-flex items-center justify-center rounded-md bg-accent-primary px-6 py-3 font-medium text-white shadow transition hover:bg-accent-primary/90 focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2"
+          >
+            Get Started
+          </a>
+        </div>
+
+        <!-- Custom Plan -->
+        <div
+          class="flex flex-col rounded-lg border border-muted-text/20 bg-white/70 p-8 shadow dark:bg-background/50 dark:text-white"
+        >
+          <h3 class="text-xl font-semibold">Custom&nbsp;Solution</h3>
+          <p class="mt-2 text-muted-text">Tailored to your goals.</p>
+          <span class="mt-6 text-4xl font-bold tracking-tight">CALL</span>
+          <ul class="mt-6 flex flex-col gap-2 text-sm">
+            <li class="flex gap-2">✅ Landing pages</li>
+            <li class="flex gap-2">✅ Copywriting</li>
+            <li class="flex gap-2">✅ Ongoing maintenance</li>
+          </ul>
+          <a
+            href="/contact"
+            class="mt-auto inline-flex items-center justify-center rounded-md bg-accent-primary px-6 py-3 font-medium text-white shadow transition hover:bg-accent-primary/90 focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2"
+          >
+            Request Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ───────────────────  FINAL CALL‑TO‑ACTION  ────────────────── */}
+  <section
+    class="relative isolate overflow-hidden bg-accent-primary py-16 sm:py-20"
+  >
+    <div class="container mx-auto max-w-screen-xl px-4 text-center">
+      <h2 class="font-heading text-3xl font-bold text-white sm:text-4xl">
+        Ready to&nbsp;Scale Your&nbsp;Business?
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-white/90">
+        Let’s talk about turning your website into your strongest sales asset.
+      </p>
+      <a
+        href="/contact"
+        class="mt-8 inline-flex items-center justify-center rounded-md bg-white px-6 py-3 font-medium text-accent-primary transition hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+      >
+        Book a Call
+      </a>
+    </div>
+  </section>
 </Layout>

@@ -1,15 +1,96 @@
 ---
 // src/pages/about.astro
 import Layout from "../layouts/Layout.astro";
+
+/* ──────────────────────────────────────────────────────────
+   📸  Replace these paths with real images when available
+   ────────────────────────────────────────────────────────── */
+const team = [
+  {
+    name: "Matt Birch",
+    role: "Founder & Design Lead",
+    img: "/images/team/matt.jpg", // 400×400 px preferred
+    bio: "Matt’s been building sites for 10+ years and is obsessed with removing friction between businesses and their customers.",
+  },
+  {
+    name: "Sean Franklin",
+    role: "Web Developer",
+    img: "/images/team/sean.jpg",
+    bio: "Sean pairs polished UI with clean code. When he’s not pushing pixels you’ll catch him cheering on the Phillies.",
+  },
+];
 ---
 
 <Layout
   title="About Us | Optimize Web Solutions"
-  description="Learn about Optimize Web Solutions, a web development company dedicated to helping small businesses succeed online with professional, custom websites."
+  description="Get to know the small, senior-level team behind Optimize Web Solutions and see how our pragmatic approach delivers measurable results."
   ogImage="/images/optimize-web-solutions-inside-office-computer.jpg"
 >
-  <div class="container mx-auto max-w-screen-xl px-4 py-16">
-    <h1 class="text-4xl font-bold">About Us</h1>
-    <p class="mt-4 text-muted-text">Content for the about page will go here.</p>
-  </div>
+  <!-- ───── Hero ───── -->
+  <section class="container mx-auto max-w-4xl px-4 pt-24 pb-16 text-center">
+    <h1 class="text-5xl font-extrabold leading-tight md:text-6xl">
+      Small team. <br class="hidden md:inline" />Serious results.
+    </h1>
+    <p class="mt-6 text-lg text-muted-text md:text-xl">
+      We write lean code, craft intuitive interfaces, and skip the bloated
+      agency layers so you get a website that moves the needle—fast.
+    </p>
+  </section>
+
+  <!-- ───── Mission ───── -->
+  <section class="bg-light-100/50 dark:bg-dark-900/30">
+    <div class="container mx-auto max-w-3xl px-4 py-16 space-y-8">
+      <h2 class="text-3xl font-semibold">Why we exist</h2>
+      <p class="text-muted-text text-lg leading-relaxed">
+        The average small business site is slow, hard to update, and full of
+        guess-work. We’re here to change that. Every line of code we ship is
+        purposeful, performance-minded, and geared toward clear ROI—because
+        “pretty” means nothing without results.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───── Team ───── -->
+  <section class="container mx-auto max-w-6xl px-4 py-20">
+    <h2 class="text-3xl font-semibold text-center mb-12">Meet the team</h2>
+
+    <div class="grid gap-12 sm:grid-cols-2">
+      {
+        team.map(({ name, role, img, bio }) => (
+          <article class="flex flex-col items-center text-center space-y-6">
+            <img
+              src={img}
+              alt={name}
+              class="h-44 w-44 rounded-full object-cover shadow-lg"
+              loading="lazy"
+            />
+            <div>
+              <h3 class="text-xl font-bold">{name}</h3>
+              <p class="text-muted-text mb-4">{role}</p>
+              <p class="max-w-sm">{bio}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ───── CTA ───── -->
+  <section class="bg-gradient-to-br from-primary-600 to-primary-500 text-white">
+    <div
+      class="container mx-auto flex flex-col items-center gap-6 px-4 py-16 text-center"
+    >
+      <h2 class="text-3xl font-semibold">Ready to level-up your website?</h2>
+      <p class="max-w-2xl text-white/90">
+        Book a quick, no-pressure call and let’s see if our approach is the
+        right fit.
+      </p>
+      <a
+        href="/contact"
+        class="inline-block rounded-lg bg-white/90 px-8 py-3 font-medium text-primary-700 transition hover:bg-white"
+      >
+        Schedule a call
+      </a>
+    </div>
+  </section>
 </Layout>

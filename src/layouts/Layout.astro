@@ -89,6 +89,11 @@ const finalOgImage = image
       ogImage={finalOgImage}
       canonicalURL={canonicalURL}
     />
+    <style is:global>
+      :root::before {
+        display: none !important;
+      }
+    </style>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHKZY5YZP4"
     ></script>
@@ -132,16 +137,24 @@ const finalOgImage = image
         sameAs: [
           "https://facebook.com/optimizewebsitenow/",
           "https://x.com/optimizewebnow",
-          "https://youtube.com/channel/UCAtiy-UpkSihTHimjNokhqw",
+          "https://youtube.com/@optimizewebsolutions",
         ],
       })}
     />
   </head>
   <body
-    class="min-h-screen flex flex-col text-base sm:text-lg md:text-xl antialiased"
+    class="min-h-screen flex flex-col text-base sm:text-lg md:text-xl antialiased font-body"
   >
+    {/* Keep the sr-only fix, it's good practice */}
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-accent-secondary focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-accent-primary"
+    >
+      Skip to main content
+    </a>
+
     <Header />
-    <main>
+    <main id="main">
       <slot />
     </main>
     <Footer />

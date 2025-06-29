@@ -1,144 +1,109 @@
 ---
 // src/components/Header.astro
 import { Image } from "astro:assets";
-import logo from "../assets/images/optimize-web-solutions-logo.png";
-import OpenIcon from "./OpenIcon.astro";
-import CloseIcon from "./CloseIcon.astro";
+import darkLogo from "../assets/images/optimize-web-solutions-logo.png";
+import lightLogo from "../assets/images/optimize-web-solutions-logo-light.webp";
 import ThemeToggle from "./ThemeToggle.jsx";
 
-// Data for our navigation links
-const menuItems = [
+const links = [
   { title: "Home", path: "/" },
   { title: "About", path: "/about" },
   { title: "Services", path: "/services" },
+  { title: "Contact", path: "/contact" },
 ];
 ---
 
-<header class="relative py-6">
+<header
+  id="site-header"
+  class="sticky top-0 z-50 w-full transition-colors duration-300
+  
+  data-[state=scrolled]:bg-white
+  data-[state=scrolled]:shadow-sm
+  dark:data-[state=scrolled]:bg-gray-950
+  data-[state=on-hero]:bg-white
+  dark:data-[state=on-hero]:bg-transparent
+  dark:data-[state=on-hero]:shadow-none"
+>
   <div
-    class="container mx-auto max-w-screen-xl px-4 flex justify-between items-center"
+    class="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4 md:py-5"
   >
-    <a href="/">
-      <Image src={logo} alt="Optimize Web Solutions Logo" width="180" />
+    <a href="/" aria-label="Optimize Web Solutions" class="shrink-0">
+      <Image src={lightLogo} alt="" width="160" class="block dark:hidden" />
+      <Image src={darkLogo} alt="" width="160" class="hidden dark:block" />
     </a>
-
-    <nav class="hidden md:flex">
-      <ul class="flex items-center space-x-6 font-heading">
-        <li class="mr-4"><ThemeToggle client:load /></li>
-        {
-          menuItems.map((item) => (
-            <li>
-              <a
-                href={item.path}
-                class="hover:text-accent-secondary transition-colors duration-300"
-              >
-                {item.title}
-              </a>
-            </li>
-          ))
-        }
-        <li>
-          <a
-            href="/contact"
-            class="bg-accent-primary text-background font-bold py-2 px-4 rounded-md hover:bg-orange-600 transition-colors duration-300"
-            >Contact Us</a
-          >
-        </li>
-      </ul>
-    </nav>
-
-    <div class="md:hidden flex items-center">
+    <div class="flex items-center gap-4">
       <ThemeToggle client:load />
-      <button
-        id="mobile-menu-button"
-        class="text-white p-2 ml-2"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <OpenIcon class="open-icon block h-6 w-6" />
-        <CloseIcon class="close-icon hidden h-6 w-6" />
-      </button>
-    </div>
-  </div>
-
-  <div id="mobile-menu" class="container mx-auto max-w-screen-xl px-4">
-    <ul class="flex flex-col pt-2 pb-4 font-heading">
-      {
-        menuItems.map((item, index) => (
-          <li
-            class="mobile-menu-item"
-            style={`animation-delay: ${index * 0.07}s`}
-          >
+      <nav class="hidden md:block">
+        <ul class="flex items-center gap-8 font-heading">
+          {
+            links.map((l) => (
+              <li>
+                <a
+                  href={l.path}
+                  class="header-link relative text-gray-800 dark:text-gray-200 dark:data-[state=on-hero]:text-white after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-0 after:bg-accent-secondary after:transition-[width] after:duration-300 hover:after:w-full"
+                >
+                  {l.title}
+                </a>
+              </li>
+            ))
+          }
+          <li>
             <a
-              href={item.path}
-              class="block py-3 text-lg hover:text-accent-secondary transition-colors duration-300"
+              href="tel:7035993188"
+              class="rounded-full border-2 border-accent-secondary bg-[#E68A00]/90 px-6 py-2 font-bold text-gray-900 shadow-sm transition hover:border-[#CC7A00] hover:bg-[#CC7A00]"
             >
-              {item.title}
+              Book Us
             </a>
           </li>
-        ))
-      }
-      <li
-        class="mobile-menu-item"
-        style={`animation-delay: ${menuItems.length * 0.07}s`}
-      >
-        <a
-          href="/contact"
-          class="block mt-2 py-3 px-5 text-lg bg-accent-primary text-background text-center rounded-md hover:bg-orange-600 transition-colors duration-300"
-          >Contact Us</a
-        >
-      </li>
-    </ul>
+        </ul>
+      </nav>
+      <button id="mobile-toggle" class="p-2 md:hidden">
+        <span
+          class="block h-0.5 w-6 bg-gray-800 dark:bg-gray-200 dark:data-[state=on-hero]:bg-white"
+        ></span>
+        <span
+          class="my-1 block h-0.5 w-6 bg-gray-800 dark:bg-gray-200 dark:data-[state=on-hero]:bg-white"
+        ></span>
+        <span
+          class="block h-0.5 w-6 bg-gray-800 dark:bg-gray-200 dark:data-[state=on-hero]:bg-white"
+        ></span>
+      </button>
+    </div>
   </div>
 </header>
 
 <script>
-  function setupNavbar() {
-    const mobileMenuButton = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-    // Note: We target classes now, not component names
-    const openIcon = document.querySelector(".open-icon");
-    const closeIcon = document.querySelector(".close-icon");
-
-    if (!mobileMenuButton || !mobileMenu || !openIcon || !closeIcon) {
-      return;
-    }
-
-    const toggleMainMenu = () => {
-      const isOpening = !mobileMenu.classList.contains("mobile-menu-open");
-      mobileMenu.classList.toggle("mobile-menu-open");
-      openIcon.classList.toggle("hidden", isOpening);
-      closeIcon.classList.toggle("hidden", !isOpening);
-      mobileMenuButton.setAttribute("aria-expanded", String(isOpening));
-    };
-
-    mobileMenuButton.addEventListener("click", toggleMainMenu);
-
-    const handleResize = () => {
-      if (
-        window.innerWidth >= 768 &&
-        mobileMenu.classList.contains("mobile-menu-open")
-      ) {
-        toggleMainMenu(); // Close mobile menu on resize to desktop
+  const header = document.getElementById("site-header");
+  if (header) {
+    const setHeaderState = () => {
+      const hero = document.querySelector(".-mt-24");
+      // The script now ONLY sets the state. Nothing else.
+      if (window.scrollY < 10 && hero) {
+        header.dataset.state = "on-hero";
+      } else {
+        header.dataset.state = "scrolled";
       }
     };
 
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup function for Astro's View Transitions
-    return () => {
-      mobileMenuButton.removeEventListener("click", toggleMainMenu);
-      window.removeEventListener("resize", handleResize);
-    };
-  }
-
-  // Run setup and manage cleanup on page navigation
-  let cleanupNavbar = setupNavbar();
-  document.addEventListener("astro:after-swap", () => {
-    if (typeof cleanupNavbar === "function") {
-      cleanupNavbar();
+    // We need to re-run this check if the theme changes
+    const themeToggle = document.querySelector("theme-toggle");
+    if (themeToggle) {
+      // This assumes your ThemeToggle component has an id or can be selected.
+      // A better way is to listen for a custom event from the component.
+      // For now, let's just observe class changes on <html> as a fallback.
+      new MutationObserver(() => setHeaderState()).observe(
+        document.documentElement,
+        {
+          attributes: true,
+          attributeFilter: ["class"],
+        },
+      );
     }
-    cleanupNavbar = setupNavbar();
-  });
+
+    // Run on page load and on scroll
+    window.addEventListener("load", () => {
+      setHeaderState();
+      document.addEventListener("scroll", setHeaderState, { passive: true });
+    });
+  }
 </script>

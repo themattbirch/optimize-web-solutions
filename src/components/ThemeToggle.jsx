@@ -1,5 +1,4 @@
 // src/components/ThemeToggle.jsx
-
 import { useEffect, useState } from "react";
 
 // --- Icons defined outside the component to prevent re-creation on render ---
@@ -40,7 +39,7 @@ const DarkModeIcon = () => (
   </svg>
 );
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ className = "" }) => {
   // Default state is 'light', but useEffect will correct this instantly.
   const [theme, setTheme] = useState("light");
 
@@ -64,7 +63,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="theme-toggle bg-transparent border-none cursor-pointer p-2 transition-colors"
+      className={`${className} theme-toggle bg-transparent border-none cursor-pointer p-2 transition-colors`}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     >
       {/* Conditionally render the correct icon based on state */}

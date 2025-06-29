@@ -10,16 +10,13 @@ import FinalCta from "../components/FinalCTA.astro";
 
 <Layout
   title="Optimize Web Solutions | Custom Web Development for Small Businesses"
-  description="Partner with Optimize Web Solutions to build a fast, modern, and SEO-friendly website. We specialize in custom web development for small businesses in Northern Virginia."
+  description="Partner with Optimize Web Solutions to build a fast, modern, and SEO-friendly website for your small business."
   ogImage="/images/ows-devices-va-waterfront.jpg"
 >
-  {/* This section is now full-width by default */}
-  <HeroSection />
+  <HeroSection class="-mt-24" />
 
-  {
-    /* The rest of the sections are wrapped in a container to keep them centered */
-  }
-  <div class="container mx-auto max-w-screen-xl px-4">
+  {/* The 'main' content starts here, no need for a nested div */}
+  <div id="main" class="space-y-40 scroll-mt-24">
     <ValueProp />
     <Differentiators />
     <PortfolioShowcase />
