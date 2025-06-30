@@ -35,7 +35,7 @@ const links = [
     </a>
 
     <!-- Desktop Nav + ThemeToggle + Book Us -->
-    <div class="hidden md:flex items-center gap-8 font-heading">
+    <div class="hidden lg:flex items-center gap-8 font-heading">
       <ThemeToggle client:load className="text-gray-900 dark:text-white" />
       {
         links.map((l) => (
@@ -49,14 +49,14 @@ const links = [
       }
       <a
         href="tel:7035993188"
-        class="ml-4 rounded-full border-2 border-accent-secondary bg-[#E68A00]/90 px-6 py-2 font-bold text-gray-900 shadow-sm transition hover:bg-[#CC7A00] hover:border-[#CC7A00]"
+        class="ml-4 rounded-full bg-accent-primary px-4 py-1.5 text-sm font-semibold text-gray-800 dark:text-gray-200 shadow-sm transition hover:bg-accent-primary/90"
       >
         Book Us
       </a>
     </div>
 
     <!-- Mobile Toggle + ThemeToggle -->
-    <div class="flex md:hidden items-center gap-2">
+    <div class="flex lg:hidden items-center gap-2">
       <ThemeToggle client:load className="text-gray-900 dark:text-white" />
       <button
         id="mobile-menu-button"
@@ -73,7 +73,7 @@ const links = [
   <!-- Mobile Menu -->
   <nav
     id="mobile-menu"
-    class="md:hidden absolute top-full inset-x-0 bg-[rgba(255,255,255,0.9)] dark:bg-[rgba(15,23,42,0.92)] backdrop-blur p-4 rounded-b-md opacity-0 pointer-events-none transform -translate-y-2 transition-all"
+    class="lg:hidden absolute top-full inset-x-0 bg-[rgba(255,255,255,0.9)] dark:bg-[rgba(15,23,42,0.92)] backdrop-blur p-4 rounded-b-md opacity-0 pointer-events-none transform -translate-y-2 transition-all"
   >
     <ul class="space-y-2">
       {
@@ -121,7 +121,7 @@ const links = [
     btn.addEventListener("click", toggleMenu);
     window.addEventListener("resize", () => {
       if (
-        window.innerWidth >= 820 &&
+        window.innerWidth >= 1024 &&
         menu.classList.contains("mobile-menu-open")
       ) {
         toggleMenu();

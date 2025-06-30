@@ -136,7 +136,7 @@
 }
 
 /* Hide the entire mobile menu on larger screens */
-@media (min-width: 820px) {
+@screen lg {
   #mobile-menu {
     display: none !important;
   }

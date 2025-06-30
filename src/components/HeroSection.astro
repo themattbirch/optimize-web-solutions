@@ -1,53 +1,73 @@
 ---
-// src/components/HeroSection.astro
-import { Image } from "astro:assets";
-import heroBackgroundImage from "../assets/images/ows-hero-image.jpg";
+import { Image } from "astro:assets"; // This import is no longer strictly needed but doesn't hurt to keep.
 
 // Grab any passed-in props (like class, data-hero, etc.)
 const { class: extraClasses = "", ...rest } = Astro.props;
 ---
 
 <section
-  class={`relative text-white ${extraClasses}`}
+  class:list={["relative text-background-dark dark:text-white", extraClasses]}
   {...rest}
 >
   {/* --- BACKGROUND LAYERS --- */}
-  {/* The order here matters. The item that comes last will be on top. */}
 
-  {/* Layer 1 (Bottom): A solid dark color. This renders instantly and COVERS the orange shape. */}
-  <div class="absolute inset-0 bg-gray-950"></div>
+  {/* Layer 1: Solid Base Color */}
+  {/* This sets the foundational background color for each mode. */}
+  <div class="absolute inset-0 bg-white dark:bg-gray-950"></div>
 
-  {/* Layer 2 (Middle): Your background image. This sits on top of the solid color. */}
-  <Image
-    src={heroBackgroundImage}
-    alt="A modern, abstract background representing web solutions."
-    class="absolute inset-0 h-full w-full object-cover object-top"
-  />
+  {/* Layer 2: Unified Gradient Layer */}
+  {
+    /* This single div will now handle BOTH the light and dark mode gradients via CSS. */
+  }
+  <div class="absolute inset-0 mesh-gradient"></div>
 
-  {/* Layer 3 (Top): A darkening gradient to place over the image for text readability. */}
-  <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-background/30"></div>
+  {/* Layer 3: Darkening Overlay for Dark Mode ONLY */}
+  {/* This adds a bit of extra contrast for the white text in dark mode. */}
+  <div
+    class="absolute inset-0 hidden bg-gradient-to-t from-background/80 to-transparent dark:block"
+  >
+  </div>
 
   {/* --- CONTENT LAYER --- */}
-  {/* `position: relative` lifts this content on top of all the absolute background layers. */}
-  <div class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
+  <div
+    class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+  >
     <div class="mx-auto max-w-3xl text-center">
-      <h1 class="font-heading text-4xl font-extrabold sm:text-6xl text-shadow-lg max-w-prose mx-auto">
+      <h1
+        class="font-heading text-4xl font-extrabold sm:text-6xl dark:text-shadow-lg max-w-prose mx-auto"
+      >
         Modern Web Design<span class="sm:block"> With a Creative Spin.</span>
       </h1>
-      <p class="mx-auto mt-6 max-w-xl sm:text-xl/relaxed text-white/90">
+
+      <p
+        class="mx-auto mt-6 max-w-xl sm:text-xl/relaxed text-gray-700 dark:text-white/90"
+      >
         We build user-friendly, high-performance websites that differentiate
         your business from the competition.
       </p>
+
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
           href="/contact"
-          class="block w-full rounded-lg bg-accent-primary px-12 py-4 text-lg font-bold text-background shadow transition-transform duration-300 hover:scale-105 hover:bg-orange-600 focus:outline-none focus:ring sm:w-auto"
+          class="block w-full rounded-lg px-12 py-4 text-lg font-bold text-black dark:text-white shadow
+    transition-transform duration-300 focus:outline-none focus:ring sm:w-auto
+    bg-orange-500 hover:bg-orange-600 /* -- Light Mode: Brighter orange, darkens on hover -- */
+    dark:bg-accent-primary dark:hover:bg-orange-700 /* -- Dark Mode: Deep accent orange, darkens on hover -- */
+    
+    hover:scale-105"
         >
           Get Help Now
         </a>
+
+        {/* 2. Secondary CTA: "Learn More" */}
         <a
           href="/services"
-          class="block w-full rounded-lg border border-accent-secondary px-12 py-4 text-lg font-medium text-accent-secondary shadow transition-transform duration-300 hover:scale-105 hover:bg-accent-secondary hover:text-background focus:outline-none focus:ring sm:w-auto"
+          class="block w-full rounded-lg border px-12 py-4 text-lg font-medium shadow
+    transition-transform duration-300 focus:outline-none focus:ring sm:w-auto
+    border-accent-secondary text-accent-secondary
+    hover:bg-accent-secondary hover:text-white
+    
+    hover:scale-105"
         >
           Learn More
         </a>
@@ -57,7 +77,31 @@ const { class: extraClasses = "", ...rest } = Astro.props;
 </section>
 
 <style>
-  .text-shadow-lg {
+  /* --- BASE STYLES FOR THE GRADIENT DIV --- */
+  .mesh-gradient {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition:
+      background-image 0.5s ease-in-out,
+      opacity 0.5s ease-in-out;
+  }
+
+  /* --- LIGHT MODE GRADIENT --- */
+  .mesh-gradient {
+    /* The light, airy gradient for the default theme */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3e%3cdefs%3e%3cfilter id='a' x='-200%25' y='-200%25' width='400%25' height='400%25' filterUnits='objectBoundingBox'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='75'/%3e%3c/filter%3e%3c/defs%3e%3cg filter='url(%23a)'%3e%3ccircle fill='%23FF9900' cx='400' cy='400' r='150'/%3e%3ccircle fill='%2300BFFF' cx='550' cy='250' r='150'/%3e%3c/g%3e%3c/svg%3e");
+    opacity: 0.45;
+  }
+
+  /* --- DARK MODE GRADIENT --- */
+  .dark .mesh-gradient {
+    /* A new, moodier "nebula" gradient for dark mode */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3e%3cdefs%3e%3cfilter id='a' x='-200%25' y='-200%25' width='400%25' height='400%25' filterUnits='objectBoundingBox'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='75'/%3e%3c/filter%3e%3c/defs%3e%3cg filter='url(%23a)'%3e%3ccircle fill='%23FF9900' cx='250' cy='500' r='150'/%3e%3ccircle fill='%2300BFFF' cx='550' cy='450' r='150'/%3e%3c/g%3e%3c/svg%3e");
+    opacity: 0.6; /* A bit more vibrant in dark mode */
+  }
+
+  .dark .text-shadow-lg {
     text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
   }
 </style>

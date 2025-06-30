@@ -1,5 +1,4 @@
-// tailwind.config.mjs
-
+// tailwind.config.mjs - The Final "Hover" Palette
 import { fontFamily } from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
 
@@ -9,8 +8,8 @@ export default {
     extend: {
       colors: {
         background: "#121212",
-        "accent-primary": "#FF9900",
-        "accent-secondary": "#00BFFF",
+        "accent-primary": "#EA580C", // The rich "hover" orange
+        "accent-secondary": "#33658A", // The confident blue
         "muted-text": "#888888",
       },
       fontFamily: {
@@ -19,7 +18,6 @@ export default {
       },
     },
   },
-  plugins: [
-    forms(), // now that @tailwindcss/forms is installed
-  ],
+  plugins: [forms()],
+  darkMode: "class",
 };
