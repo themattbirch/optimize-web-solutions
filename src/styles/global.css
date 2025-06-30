@@ -1,51 +1,143 @@
-/* =============Global.css========================= */
-/* Custom Mobile Menu Styles & Animations          */
 /* =============================================== */
+/* Mobile Menu Styles (Corrected & Consolidated)   */
+/* =============================================== */
+
+/* --- The Main Menu Button --- */
+#mobile-menu-button {
+  @apply inline-flex items-center justify-center p-2 rounded-md;
+  border: 1px solid transparent;
+}
 
 /* --- The Main Dropdown Panel --- */
 #mobile-menu {
-  /* This uses a fixed position to overlay content */
-  @apply absolute top-full left-0 right-0 z-20;
+  @apply absolute top-full left-0 right-0 z-20 p-4;
+  /* Light-mode background */
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 
-  /* Fallback background, you can customize this */
-  background-color: #121212;
-
-  /* These properties are for the animation */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transform: translateY(-0.75rem);
   transition:
-    opacity 0.3s ease-out,
-    transform 0.3s ease-out,
-    visibility 0s linear 0.3s; /* Delay hides after fade-out */
+    opacity 0.45s ease-out 0.12s,
+    transform 0.55s cubic-bezier(0.22, 1, 0.3, 1) 0.12s,
+    visibility 0s linear 0.55s;
 }
 
-/* OPEN state for the mobile menu */
+/* Dark-mode override */
+.dark #mobile-menu {
+  background-color: rgba(15, 23, 42, 0.92);
+  /* rest of the open/close transitions stay the same */
+}
+
 #mobile-menu.mobile-menu-open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
   transition:
-    opacity 0.3s ease-out,
-    transform 0.3s ease-out,
+    opacity 0.45s ease-out,
+    transform 0.55s cubic-bezier(0.22, 1, 0.3, 1),
     visibility 0s;
 }
 
-/* Staggered animation for menu items */
+/* --- Individual Menu Items --- */
 .mobile-menu-item {
-  opacity: 0;
-  animation: fadeInUp 0.5s forwards;
+  @apply block w-full text-left;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+#mobile-menu a {
+  @apply text-gray-900; /* dark in light mode */
+}
+.dark #mobile-menu a {
+  @apply text-gray-300; /* pale in dark mode */
+}
+
+/* --- The Accordion Toggle Button --- */
+.mobile-dropdown-toggle svg {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Rotates the arrow when the button has the .is-open class */
+.mobile-dropdown-toggle.is-open svg {
+  transform: rotate(180deg);
+}
+
+/* --- The Accordion Panel (dropdown) --- */
+.mobile-dropdown-menu {
+  @apply ml-4;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+
+  /* subtle slide-down, eased */
+  transform: translateY(-0.375rem);
+  transition:
+    max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+/* OPEN state */
+.mobile-dropdown-menu.is-open {
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* --- Child link reveal (staggered) --- */
+.mobile-dropdown-menu a {
+  @apply inline-block no-underline;
+  opacity: 0;
+  transform: translateX(-0.5rem);
+  transition:
+    opacity 0.45s ease-out,
+    transform 0.45s ease-out;
+}
+/* When the panel is open, fade & slide links in */
+.mobile-dropdown-menu.is-open a {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- General Mobile Menu Link Styles --- */
+.mobile-link,
+.mobile-dropdown-menu a {
+  @apply inline-block no-underline hover:no-underline;
+  border-bottom: none;
+}
+
+/* --- Specific styles for the Accordion Toggle Button --- */
+.mobile-dropdown-toggle {
+  @apply w-full flex items-center justify-between no-underline hover:no-underline;
+  border-bottom: none;
+}
+
+.mobile-link-text,
+.mobile-dropdown-toggle span,
+.mobile-dropdown-menu a span {
+  @apply relative inline-block z-10;
+}
+
+.mobile-link-text::after,
+.mobile-dropdown-toggle span::after,
+.mobile-dropdown-menu a span::after {
+  content: "";
+  @apply absolute left-0 bottom-0 h-0.5 bg-blue-400 w-full transform scale-x-0 origin-left transition-transform duration-300;
+}
+
+.mobile-link:hover .mobile-link-text::after,
+.mobile-dropdown-toggle:hover span::after,
+.mobile-dropdown-menu a:hover span::after {
+  @apply scale-x-100;
+}
+
+/* Hide the entire mobile menu on larger screens */
+@media (min-width: 820px) {
+  #mobile-menu {
+    display: none !important;
   }
 }

@@ -3,6 +3,8 @@
 import { Image } from "astro:assets";
 import darkLogo from "../assets/images/optimize-web-solutions-logo.png";
 import lightLogo from "../assets/images/optimize-web-solutions-logo-light.webp";
+import OpenIcon from "./OpenIcon.astro";
+import CloseIcon from "./CloseIcon.astro";
 import ThemeToggle from "./ThemeToggle.jsx";
 
 const links = [
@@ -15,109 +17,115 @@ const links = [
 
 <header
   id="site-header"
-  class="sticky top-0 z-50 w-full bg-white dark:bg-gray-950 shadow-sm transition-colors duration-300"
+  class="sticky top-0 z-50 w-full bg-transparent transition-colors duration-300"
 >
   <div
     class="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4 md:py-5"
   >
+    <!-- Logo -->
     <a href="/" aria-label="Optimize Web Solutions" class="shrink-0">
-      <Image src={lightLogo} alt="" width="160" class="block dark:hidden" />
+      <Image
+        src={lightLogo}
+        alt=""
+        loading="eager"
+        width="160"
+        class="block dark:hidden"
+      />
       <Image src={darkLogo} alt="" width="160" class="hidden dark:block" />
     </a>
 
-    <div class="flex items-center gap-4">
-      <ThemeToggle client:load />
-      <nav class="hidden md:block">
-        <ul class="flex items-center gap-8 font-heading">
-          {
-            links.map((l) => (
-              <li>
-                <a
-                  href={l.path}
-                  class="header-link relative text-gray-800 dark:text-gray-200 after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-0 after:bg-accent-secondary after:transition-[width] after:duration-300 hover:after:w-full"
-                >
-                  {l.title}
-                </a>
-              </li>
-            ))
-          }
-          <li>
-            <a
-              href="tel:7035993188"
-              class="rounded-full border-2 border-accent-secondary bg-[#E68A00]/90 px-6 py-2 font-bold text-gray-900 shadow-sm transition hover:border-[#CC7A00] hover:bg-[#CC7A00]"
-            >
-              Book Us
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <button id="mobile-toggle" class="p-2 md:hidden">
-        <span class="block h-0.5 w-6 bg-gray-800 dark:bg-gray-200"></span>
-        <span class="my-1 block h-0.5 w-6 bg-gray-800 dark:bg-gray-200"></span>
-        <span class="block h-0.5 w-6 bg-gray-800 dark:bg-gray-200"></span>
+    <!-- Desktop Nav + ThemeToggle + Book Us -->
+    <div class="hidden md:flex items-center gap-8 font-heading">
+      <ThemeToggle client:load className="text-gray-900 dark:text-white" />
+      {
+        links.map((l) => (
+          <a
+            href={l.path}
+            class="px-4 py-2 text-gray-900 dark:text-white hover:text-accent-primary transition-colors"
+          >
+            {l.title}
+          </a>
+        ))
+      }
+      <a
+        href="tel:7035993188"
+        class="ml-4 rounded-full border-2 border-accent-secondary bg-[#E68A00]/90 px-6 py-2 font-bold text-gray-900 shadow-sm transition hover:bg-[#CC7A00] hover:border-[#CC7A00]"
+      >
+        Book Us
+      </a>
+    </div>
+
+    <!-- Mobile Toggle + ThemeToggle -->
+    <div class="flex md:hidden items-center gap-2">
+      <ThemeToggle client:load className="text-gray-900 dark:text-white" />
+      <button
+        id="mobile-menu-button"
+        class="p-2 rounded-md focus:outline-none text-gray-900 dark:text-white"
+        aria-expanded="false"
+        aria-label="Open menu"
+      >
+        <OpenIcon class="block h-6 w-6" />
+        <CloseIcon class="hidden h-6 w-6" />
       </button>
     </div>
   </div>
+
+  <!-- Mobile Menu -->
+  <nav
+    id="mobile-menu"
+    class="md:hidden absolute top-full inset-x-0 bg-[rgba(255,255,255,0.9)] dark:bg-[rgba(15,23,42,0.92)] backdrop-blur p-4 rounded-b-md opacity-0 pointer-events-none transform -translate-y-2 transition-all"
+  >
+    <ul class="space-y-2">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.path}
+              class="mobile-link block text-gray-900 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md"
+            >
+              {l.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </header>
 
-<script>
-  const header = document.getElementById("site-header");
+<script is:inline>
+  (() => {
+    const btn = document.getElementById("mobile-menu-button");
+    const menu = document.getElementById("mobile-menu");
+    const openIcon = btn.querySelector("svg");
+    const closeIcon = btn.querySelectorAll("svg")[1];
+    if (!btn || !menu) return;
 
-  // FIX: The entire logic is now inside this `if` block.
-  // This tells TypeScript that 'header' can't be null here.
-  if (header) {
-    const setHeaderAppearance = () => {
-      const hero = document.querySelector(".-mt-24");
-
-      if (window.scrollY < 10 && hero) {
-        header.classList.add("on-hero");
+    const toggleMenu = () => {
+      const isOpen = menu.classList.toggle("mobile-menu-open");
+      btn.setAttribute("aria-expanded", String(isOpen));
+      openIcon.classList.toggle("hidden", isOpen);
+      closeIcon.classList.toggle("hidden", !isOpen);
+      if (isOpen) {
+        menu.style.opacity = "1";
+        menu.style.pointerEvents = "auto";
+        menu.style.transform = "translateY(0)";
+        menu.style.visibility = "visible";
       } else {
-        header.classList.remove("on-hero");
+        menu.style.opacity = "0";
+        menu.style.pointerEvents = "none";
+        menu.style.transform = "translateY(-0.75rem)";
+        menu.style.visibility = "hidden";
       }
     };
 
-    const onPageLoad = () => {
-      setHeaderAppearance();
-      document.addEventListener("scroll", setHeaderAppearance, {
-        passive: true,
-      });
-    };
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", onPageLoad);
-    } else {
-      onPageLoad();
-    }
-  }
-</script>
-
-<style>
-  /* FIX: These styles ONLY apply in dark mode AND when the 'on-hero' class is present. */
-  /* In light mode, this rule is ignored, so the header stays white. */
-  .dark .on-hero {
-    background-color: transparent !important;
-    box-shadow: none !important;
-  }
-
-  /* When transparent in dark mode, make links white */
-  .dark .on-hero .header-link {
-    color: white;
-  }
-
-  /* When transparent in dark mode, make hamburger icon white */
-  .dark .on-hero #mobile-toggle span {
-    background-color: white;
-  }
-</style>
-
-<script is:inline>
-  const btn = document.getElementById("mobile-toggle");
-  const panel = document.getElementById("mobile-panel");
-  if (btn && panel) {
-    btn.addEventListener("click", () => {
-      const open = panel.style.transform === "scaleY(1)";
-      panel.style.transform = open ? "scaleY(0)" : "scaleY(1)";
-      btn.setAttribute("aria-expanded", String(!open));
+    btn.addEventListener("click", toggleMenu);
+    window.addEventListener("resize", () => {
+      if (
+        window.innerWidth >= 820 &&
+        menu.classList.contains("mobile-menu-open")
+      ) {
+        toggleMenu();
+      }
     });
-  }
+  })();
 </script>

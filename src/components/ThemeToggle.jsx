@@ -40,11 +40,11 @@ const DarkModeIcon = () => (
 );
 
 const ThemeToggle = ({ className = "" }) => {
-  // Default state is 'light', but useEffect will correct this instantly.
-  const [theme, setTheme] = useState("light");
+  // 1. Initialize state to `null`. This is the key to the fix.
+  const [theme, setTheme] = useState(null);
 
-  // On mount, sync the component's state with the actual theme
-  // set by the inline script in the <head>.
+  // 2. On mount, this useEffect syncs the component's state
+  // with the actual theme determined by the inline script.
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains("dark");
     setTheme(isDarkMode ? "dark" : "light");
@@ -54,11 +54,17 @@ const ThemeToggle = ({ className = "" }) => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-
-    // Update the DOM
     document.documentElement.classList.toggle("dark", newTheme === "dark");
     document.documentElement.style.colorScheme = newTheme;
   };
+
+  // 3. Don't render anything until the theme has been determined.
+  // This prevents the initial render of the wrong icon.
+  if (theme === null) {
+    // We render an empty div with the same size as the button
+    // to prevent layout shift when the real button loads in.
+    return <div className="h-10 w-10" />;
+  }
 
   return (
     <button
@@ -66,7 +72,7 @@ const ThemeToggle = ({ className = "" }) => {
       className={`${className} theme-toggle bg-transparent border-none cursor-pointer p-2 transition-colors`}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     >
-      {/* Conditionally render the correct icon based on state */}
+      {/* Now this will only render the correct icon */}
       {theme === "light" ? <LightModeIcon /> : <DarkModeIcon />}
     </button>
   );

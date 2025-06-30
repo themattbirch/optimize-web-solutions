@@ -2,9 +2,6 @@
 // src/pages/about.astro
 import Layout from "../layouts/Layout.astro";
 
-/* ──────────────────────────────────────────────────────────
-   📸  Replace these paths with real images when available
-   ────────────────────────────────────────────────────────── */
 const team = [
   {
     name: "Matt Birch",
@@ -27,7 +24,10 @@ const team = [
   ogImage="/images/optimize-web-solutions-inside-office-computer.jpg"
 >
   <!-- ───── Hero ───── -->
-  <section class="container mx-auto max-w-4xl px-4 pt-24 pb-16 text-center">
+  <section
+    data-hero
+    class="container mx-auto max-w-4xl px-4 pt-24 pb-16 text-center -mt-24"
+  >
     <h1 class="text-5xl font-extrabold leading-tight md:text-6xl">
       Small team. <br class="hidden md:inline" />Serious results.
     </h1>

@@ -1,15 +1,23 @@
 ---
 // src/components/FinalCTA.astro
 ---
+<section class="relative overflow-hidden bg-accent-primary text-background">
+  <!-- top & bottom cuts -->
+  <div
+    class="absolute inset-0 -z-10"
+    style="
+      clip-path: polygon(
+        0 3vw,           /* top-left goes DOWN 3 vw */
+        100% 0,          /* top-right flush */
+        100% calc(100% - 3vw), /* bottom-right goes UP 3 vw */
+        0 100%           /* bottom-left flush */
+      );
+      background: var(--tw-bg-opacity,1) currentColor;
+      color: var(--tw-bg-opacity,1) theme(colors.accent.primary); /* keep orange */
+    "
+  ></div>
 
-<section class="bg-accent-primary text-background">
-  <div
-    class="absolute -top-8 left-0 right-0 h-8 -skew-y-3 bg-accent-primary origin-top"
-  >
-  </div>
-  <div
-    class="container mx-auto max-w-screen-xl px-4 py-16 text-center sm:py-24"
-  >
+  <div class="container mx-auto max-w-screen-xl px-4 py-24 text-center sm:py-32">
     <h2 class="font-heading text-3xl font-bold sm:text-4xl">
       Don't Get Lost In Cyberspace
     </h2>
@@ -21,7 +29,7 @@
 
     <a
       href="/contact"
-      class="mt-8 inline-block rounded-lg bg-white px-12 py-4 text-lg font-bold text-accent-primary shadow-lg transition-transform duration-300 hover:scale-105"
+      class="mt-10 inline-block rounded-lg bg-white px-12 py-4 text-lg font-bold text-accent-primary shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl"
     >
       Get Help Now
     </a>
