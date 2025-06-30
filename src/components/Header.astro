@@ -17,7 +17,9 @@ const links = [
 
 <header
   id="site-header"
-  class="sticky top-0 z-50 w-full bg-transparent transition-colors duration-300"
+  class="sticky top-0 z-50 w-full bg-transparent transition-all duration-300
+         scrolled-self:bg-white/90 scrolled-self:dark:bg-slate-900/90
+         scrolled-self:backdrop-blur-sm scrolled-self:shadow-lg"
 >
   <div
     class="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4 md:py-5"
@@ -84,39 +86,17 @@ const links = [
 </header>
 
 <script is:inline>
-  (() => {
-    const btn = document.getElementById("mobile-menu-button");
-    const menu = document.getElementById("mobile-menu");
-    const openIcon = btn.querySelector("svg");
-    const closeIcon = btn.querySelectorAll("svg")[1];
-    if (!btn || !menu) return;
+  const header = document.getElementById("site-header");
+  const scrollThreshold = 10; // Pixels to scroll before the background appears
 
-    const toggleMenu = () => {
-      const isOpen = menu.classList.toggle("mobile-menu-open");
-      btn.setAttribute("aria-expanded", String(isOpen));
-      openIcon.classList.toggle("hidden", isOpen);
-      closeIcon.classList.toggle("hidden", !isOpen);
-      if (isOpen) {
-        menu.style.opacity = "1";
-        menu.style.pointerEvents = "auto";
-        menu.style.transform = "translateY(0)";
-        menu.style.visibility = "visible";
-      } else {
-        menu.style.opacity = "0";
-        menu.style.pointerEvents = "none";
-        menu.style.transform = "translateY(-0.75rem)";
-        menu.style.visibility = "hidden";
-      }
-    };
+  const handleScroll = () => {
+    if (window.scrollY > scrollThreshold) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  };
 
-    btn.addEventListener("click", toggleMenu);
-    window.addEventListener("resize", () => {
-      if (
-        window.innerWidth >= 1024 &&
-        menu.classList.contains("mobile-menu-open")
-      ) {
-        toggleMenu();
-      }
-    });
-  })();
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  document.addEventListener("DOMContentLoaded", handleScroll); // Check on initial load
 </script>
