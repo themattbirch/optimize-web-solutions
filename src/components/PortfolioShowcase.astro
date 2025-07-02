@@ -1,6 +1,5 @@
 ---
 // src/components/PortfolioShowcase.astro
-import scrollScriptUrl from "../scripts/scroll-screenshot.ts?url";
 const portfolioImageSrc = "/images/cgn_full.webp";
 ---
 
@@ -66,5 +65,56 @@ const portfolioImageSrc = "/images/cgn_full.webp";
     }
   </style>
 
-  <script type="module" src={scrollScriptUrl}></script>
+  <script is:inline>
+    // ——————————————————————————
+    // Scroll-preview logic in plain JS
+    // ——————————————————————————
+    /** @type {HTMLDivElement|null} */
+    const showcase = document.querySelector(".portfolio-showcase");
+    if (!showcase) throw new Error("PortfolioShowcase element not found.");
+
+    /** @type {HTMLDivElement|null} */
+    const scrollable = showcase.querySelector(".scroll-container");
+    if (!scrollable) throw new Error("Scrollable container not found.");
+
+    let frameId = null;
+    const duration = 8000; // ms – total scroll time
+    const delay = 300; // ms – pause before starting
+
+    /**
+     * cubic ease-in-out
+     * @param {number} t
+     * @return {number}
+     */
+    const easeInOutCubic = (t) =>
+      t < 0.5 ? 4 * t ** 3 : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    /**
+     * Animate vertical scroll
+     * @param {number} to
+     */
+    const animateScroll = (to) => {
+      const start = scrollable.scrollTop;
+      const change = to - start;
+      const startTime = performance.now();
+
+      const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        scrollable.scrollTop = start + change * easeInOutCubic(progress);
+        if (progress < 1) frameId = requestAnimationFrame(step);
+      };
+
+      if (frameId !== null) cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(step);
+    };
+
+    showcase.addEventListener("mouseenter", () => {
+      setTimeout(() => animateScroll(scrollable.scrollHeight), delay);
+    });
+
+    showcase.addEventListener("mouseleave", () => {
+      if (frameId !== null) cancelAnimationFrame(frameId);
+      scrollable.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
 </section>
