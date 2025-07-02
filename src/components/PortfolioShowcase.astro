@@ -1,37 +1,70 @@
 ---
 // src/components/PortfolioShowcase.astro
-const portfolioImageSrc = "/images/cgn_full.png";
+import scrollScriptUrl from "../scripts/scroll-screenshot.ts?url";
+const portfolioImageSrc = "/images/cgn_full.webp";
 ---
 
-<section class="py-20 lg:py-28">
-  <div class="container mx-auto max-w-screen-xl px-4 text-center">
-    <h2 class="font-heading text-3xl font-bold sm:text-4xl">
-      The Quality of Our Work&nbsp;Speaks&nbsp;for&nbsp;Itself
-    </h2>
+<!-- no px-* here: vertical padding only -->
+<section class="pb-20 lg:pb-32">
+  <!-- single keeper of the horizontal gutters -->
+  <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+    <!-- centred copy block, no extra padding -->
+    <div class="text-center mx-auto max-w-2xl">
+      <h2 class="font-heading text-3xl font-bold sm:text-4xl">
+        The Quality of Our Work&nbsp;Speaks&nbsp;for&nbsp;Itself
+      </h2>
 
-    <p class="mx-auto mt-4 max-w-2xl text-muted-text">
-      Check out a recent project to see what your website could look like. Hover
-      over the frame for a live preview.
-    </p>
+      <p class="mt-6 sm:mt-8 text-muted-text">
+        Check out a recent project to see what your website could look like.
+        Hover over the frame for a live preview.
+      </p>
+    </div>
 
-    <div
-      class="mx-auto mt-12 max-w-5xl rounded-lg shadow-2xl ring-1 ring-black/5 dark:ring-0"
-    >
+    <!-- scrolling screenshot -->
+    <div class="mt-12">
       <div
-        class="flex h-8 items-center gap-2 rounded-t-lg bg-gray-200 dark:bg-background/70 px-4"
+        class="flex h-8 items-center gap-2 rounded-t-lg
+                  bg-gray-200 dark:bg-background/70"
       >
         <div class="h-3 w-3 rounded-full bg-red-500"></div>
         <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
         <div class="h-3 w-3 rounded-full bg-green-500"></div>
       </div>
 
-      <div class="overflow-hidden rounded-b-lg">
-        <img
-          src={portfolioImageSrc}
-          alt="Recent project preview"
-          class="w-full object-cover transition-transform duration-700 hover:scale-105"
-        />
+      <!-- make the scrolling frame relative so the overlay can be absolutely positioned -->
+      <div
+        class="overflow-hidden rounded-b-lg h-[600px] portfolio-showcase relative"
+      >
+        <div class="h-full overflow-y-auto scroll-container hide-scrollbar">
+          <img
+            src={portfolioImageSrc}
+            alt="Chris Gordon News website"
+            loading="lazy"
+            class="w-full object-cover"
+          />
+        </div>
+
+        <!-- gradient overlay: fades to transparent, disappears on hover -->
+        <div
+          class="pointer-events-none absolute inset-x-0 bottom-0 h-16
+           bg-gradient-to-t from-background via-background/80 to-transparent
+           opacity-90 transition-opacity duration-300
+           group-hover:opacity-0"
+        >
+        </div>
       </div>
     </div>
   </div>
+
+  <style>
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
+  <script type="module" src={scrollScriptUrl}></script>
 </section>

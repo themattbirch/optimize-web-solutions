@@ -1,33 +1,36 @@
 ---
-import { Image } from "astro:assets";
 // src/components/ValueProp.astro
+import { Image } from "astro:assets";
 import teamImage from "../assets/images/ows-design-team.png";
 ---
 
-<section class="py-16 sm:py-24">
-  <div class="container mx-auto max-w-screen-xl px-4">
-    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-      <div class="order-last md:order-none">
-        <h2 class="font-heading text-3xl font-bold sm:text-4xl">
-          A Hands-On Approach to Web Development
+<section class="px-4 sm:px-6 lg:px-8 pt-20 lg:pt-32">
+  <div class="mx-auto max-w-screen-xl">
+    <!-- mobile → 1 col,   md → 2 cols -->
+    <div class="grid gap-12 lg:grid-cols-2 items-center">
+      <div class="text-center md:text-left">
+        <h2 class="font-heading text-3xl text-center font-bold sm:text-4xl">
+          A Hands-On Approach to Web&nbsp;Development
         </h2>
-        <p class="mt-4 text-muted-text">
-          The typical web design agency approach entails a lack of communication
-          and transparency, coupled with high prices. We vehemently disagree
-          with it.
+
+        <p class="mt-6 text-muted-text">
+          The typical web-design-agency approach entails a lack of communication
+          and transparency—coupled with high prices. We vehemently disagree with
+          it.
         </p>
+
         <p class="mt-4 text-muted-text">
           Our team not only takes a creative approach to every project, but also
-          ensures your customers receive the optimal website viewing experience.
-          We present your business in the most modern and professional lens
+          ensures your customers receive the optimal website experience. We
+          present your business in the most modern and professional lens
           possible.
         </p>
       </div>
-      <div>
+      <div class="lg:order-2 px-4 md:px-0">
         <Image
           src={teamImage}
           alt="Optimize Web Solutions team collaborating on a website design"
-          class="rounded-lg shadow-lg"
+          class="w-full rounded-lg shadow-lg"
         />
       </div>
     </div>

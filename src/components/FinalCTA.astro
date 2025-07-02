@@ -1,23 +1,28 @@
 ---
 // src/components/FinalCTA.astro
 ---
-<section class="relative overflow-hidden bg-accent-primary text-background">
-  <!-- top & bottom cuts -->
+
+<!-- side-gutters match every other section -->
+<section
+  class="relative overflow-hidden bg-accent-primary text-background px-4 sm:px-6 lg:px-8"
+>
+  <!-- angled top & bottom “cuts” -->
   <div
     class="absolute inset-0 -z-10"
     style="
       clip-path: polygon(
-        0 3vw,           /* top-left goes DOWN 3 vw */
-        100% 0,          /* top-right flush */
-        100% calc(100% - 3vw), /* bottom-right goes UP 3 vw */
-        0 100%           /* bottom-left flush */
+        0 3vw,
+        100% 0,
+        100% calc(100% - 3vw),
+        0 100%
       );
-      background: var(--tw-bg-opacity,1) currentColor;
-      color: var(--tw-bg-opacity,1) theme(colors.accent.primary); /* keep orange */
+      background: currentColor;
     "
-  ></div>
+  >
+  </div>
 
-  <div class="container mx-auto max-w-screen-xl px-4 py-24 text-center sm:py-32">
+  <!-- inner wrapper: max-width only (NO extra px-*) -->
+  <div class="mx-auto max-w-screen-xl py-24 text-center sm:py-32">
     <h2 class="font-heading text-3xl font-bold sm:text-4xl">
       Don't Get Lost In Cyberspace
     </h2>
@@ -29,7 +34,8 @@
 
     <a
       href="/contact"
-      class="mt-10 inline-block rounded-lg bg-white px-12 py-4 text-lg font-bold text-accent-primary shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+      class="mt-10 inline-block rounded-lg bg-white px-12 py-4 text-lg font-bold text-accent-primary shadow-lg
+             transition-transform duration-300 hover:scale-105 hover:shadow-xl"
     >
       Get Help Now
     </a>
