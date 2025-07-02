@@ -1,7 +1,6 @@
 ---
 // src/components/PortfolioShowcase.astro
-import { Image } from "astro:assets";
-import portfolioImage from "./public/images/cgn_full.png";
+const portfolioImageSrc = "/images/cgn_full.png";
 ---
 
 <section class="py-20 lg:py-28">
@@ -27,8 +26,8 @@ import portfolioImage from "./public/images/cgn_full.png";
       </div>
 
       <div class="overflow-hidden rounded-b-lg">
-        <Image
-          src={portfolioImage}
+        <img
+          src={portfolioImageSrc}
           alt="Recent project preview"
           class="w-full object-cover transition-transform duration-700 hover:scale-105"
         />
