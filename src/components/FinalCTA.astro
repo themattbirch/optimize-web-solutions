@@ -2,40 +2,62 @@
 // src/components/FinalCTA.astro
 ---
 
-<!-- side-gutters match every other section -->
 <section
-  class="relative overflow-hidden bg-accent-primary text-background px-4 sm:px-6 lg:px-8"
+  id="final-cta"
+  class="relative overflow-hidden text-center text-background dark:text-background"
 >
-  <!-- angled top & bottom “cuts” -->
+  <!-- Gradient backdrop -->
   <div
-    class="absolute inset-0 -z-10"
-    style="
-      clip-path: polygon(
-        0 3vw,
-        100% 0,
-        100% calc(100% - 3vw),
-        0 100%
-      );
-      background: currentColor;
-    "
+    class="absolute inset-0 -z-30 bg-gradient-to-tr from-[#ff6b00] via-[#ff7700] to-[#ff5200]"
   >
   </div>
 
-  <!-- inner wrapper: max-width only (NO extra px-*) -->
-  <div class="mx-auto max-w-screen-xl py-24 text-center sm:py-32">
-    <h2 class="font-heading text-3xl font-bold sm:text-4xl">
-      Don't Get Lost In Cyberspace
+  <!-- Top wave (merges into black section above) -->
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] -z-20">
+    <svg
+      class="relative block w-[calc(140%+1px)] h-[60px] sm:h-[100px] -translate-x-[20%] fill-white dark:fill-[#121212]"
+      viewBox="0 0 1440 100"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M0,100 C240,90 480,20 720,20 C960,20 1200,90 1440,100 L1440,0 L0,0 Z"
+      ></path>
+    </svg>
+  </div>
+
+  <!-- Bottom wave (melts into footer) -->
+  <div
+    class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] -z-20 rotate-180"
+  >
+    <svg
+      class="relative block fill-white dark:fill-[#121212] w-[calc(140%+1px)] h-[60px] sm:h-[100px] -translate-x-[20%]"
+      viewBox="0 0 1440 100"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M0,100 C240,90 480,20 720,20 C960,20 1200,90 1440,100 L1440,0 L0,0 Z"
+      ></path>
+    </svg>
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative mx-auto max-w-2xl px-4 py-20 sm:px-6 sm:py-24 md:py-28 lg:py-32"
+  >
+    <h2
+      class="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+    >
+      Don’t Get Lost In Cyberspace
     </h2>
 
-    <p class="mx-auto mt-4 max-w-lg">
-      We'll optimize your online presence so your business can thrive. Your
+    <p class="mx-auto mt-6 max-w-lg text-base sm:text-lg">
+      We’ll optimize your online presence so your business can thrive. Your
       customers will thank you. Your competitors will not.
     </p>
 
     <a
       href="/contact"
-      class="mt-10 inline-block rounded-lg bg-white px-12 py-4 text-lg font-bold text-accent-primary shadow-lg
-             transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+      class="mt-8 inline-flex items-center justify-center rounded-full bg-background/90 px-8 py-3 text-base font-semibold text-[#ff5200] shadow-lg ring-2 ring-background transition-all duration-300 hover:-translate-y-1 hover:bg-transparent hover:text-background hover:shadow-xl dark:hover:text-background"
     >
       Get Help Now
     </a>
