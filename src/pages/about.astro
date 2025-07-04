@@ -26,15 +26,27 @@ const team = [
   <!-- ───── Hero ───── -->
   <section
     data-hero
-    class="container mx-auto max-w-4xl px-4 pt-24 pb-16 text-center -mt-24"
+    class="relative isolate -mt-24 overflow-hidden
+         bg-white dark:bg-background
+         text-foreground dark:text-white
+         text-center"
   >
-    <h1 class="text-5xl font-extrabold leading-tight md:text-6xl">
-      Small team. <br class="hidden md:inline" />Serious results.
-    </h1>
-    <p class="mt-6 text-lg text-muted-text md:text-xl">
-      We write lean code, craft intuitive interfaces, and skip the bloated
-      agency layers so you get a website that moves the needle—fast.
-    </p>
+    <div
+      class="relative mx-auto max-w-screen-xl
+           px-4 pt-36 pb-24
+           sm:px-6 sm:pt-44 sm:pb-28
+           md:pt-48 md:pb-32"
+    >
+      <h1
+        class="font-heading text-5xl font-extrabold leading-tight md:text-6xl"
+      >
+        Small team. <br class="hidden md:inline" />Serious results.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-muted-text md:text-xl">
+        We write lean code, craft intuitive interfaces, and skip the bloated
+        agency layers so you get a website that moves the needle—fast.
+      </p>
+    </div>
   </section>
 
   <!-- ───── Mission ───── -->
