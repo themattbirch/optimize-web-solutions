@@ -1,12 +1,13 @@
 ---
 // src/pages/about.astro
 import Layout from "../layouts/Layout.astro";
+import ContentSection from "../components/ContentSection.astro"; // Assuming a reusable component for styling sections. If not, styles are inlined.
 
 const team = [
   {
     name: "Matt Birch",
     role: "Founder & Design Lead",
-    img: "/images/matt-birch-tan-shirt-headshot.png", // 400×400 px preferred
+    img: "/images/matt-birch-tan-shirt-headshot.png",
     bio: "Matt’s been building sites for 10+ years and is obsessed with removing friction between businesses and their customers.",
   },
   {
@@ -23,7 +24,6 @@ const team = [
   description="Get to know the small, senior-level team behind Optimize Web Solutions and see how our pragmatic approach delivers measurable results."
   ogImage="/images/optimize-web-solutions-inside-office-computer.jpg"
 >
-  <!-- ───── Hero ───── -->
   <section
     class="relative mx-auto max-w-screen-xl text-center px-4 sm:px-6 py-20 sm:py-24 lg:py-32"
   >
@@ -36,44 +36,139 @@ const team = [
     </p>
   </section>
 
-  <!-- ───── Team ───── -->
-  <section class="container mx-auto max-w-6xl px-4 py-20">
-    <h2 class="text-3xl font-semibold text-center mb-12">Meet the team</h2>
+  <ContentSection>
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <div class="text-center lg:text-left">
+        <h2
+          class="font-heading text-3xl font-bold sm:text-4xl text-gray-900 dark:text-white"
+        >
+          A partnership, not a process.
+        </h2>
+        <p class="mt-6 text-lg text-gray-600 dark:text-gray-300">
+          We're a different kind of digital partner. Forget the impersonal
+          agency experience. We value your time, respect your vision, and build
+          relationships grounded in trust. Our approach is personal and
+          collaborative, ensuring we're not just building a project, but
+          building a partnership.
+        </p>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          At Optimize Web Solutions, we believe in the power of small
+          businesses. We take the time to understand your journey and your goals
+          to craft truly effective digital solutions. With us, you are the
+          priority.
+        </p>
+      </div>
+      {/* MODIFIED IMAGE CONTAINER */}
+      <div class="flex items-center justify-center">
+        <img
+          class="w-full max-h-[360px] rounded-lg object-cover shadow-lg"
+          src="/images/teamwork-collaboration-talking-office.jpg"
+          alt="The Optimize Web Solutions team collaborating."
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </ContentSection>
 
-    <div class="grid gap-12 sm:grid-cols-2">
-      {
-        team.map(({ name, role, img, bio }) => (
-          <article class="flex flex-col items-center text-center space-y-6">
-            <img
-              src={img}
-              alt={name}
-              class="h-44 w-44 rounded-full object-cover shadow-lg"
-              loading="lazy"
-            />
-            <div>
-              <h3 class="text-xl font-bold">{name}</h3>
-              <p class="text-muted-text mb-4">{role}</p>
-              <p class="max-w-sm">{bio}</p>
-            </div>
-          </article>
-        ))
-      }
+  {/* ───── Performance by Design ───── */}
+  <ContentSection class="bg-slate-50 dark:bg-gray-900">
+    <div class="text-center">
+      <h2
+        class="font-heading text-3xl font-bold sm:text-4xl text-gray-900 dark:text-white"
+      >
+        Performance by Design
+      </h2>
+      <p
+        class="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300"
+      >
+        A great website isn’t just about aesthetics; it's about a seamless user
+        experience that drives results. Our design process is centered on your
+        user, combining modern UI/UX principles with a performance-first
+        mindset.
+      </p>
+    </div>
+
+    <div
+      class="mt-12 grid grid-cols-1 gap-8 text-left lg:grid-cols-3 lg:gap-12"
+    >
+      {/* Card 1: Astro */}
+      <div
+        class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+      >
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Astro</h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">
+          We build blazingly fast websites with incredible load times, directly
+          impacting SEO and user retention.
+        </p>
+      </div>
+      {/* Card 2: React */}
+      <div
+        class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+      >
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">React</h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">
+          We create rich, interactive user interfaces that are dynamic and
+          engaging for your customers.
+        </p>
+      </div>
+      {/* Card 3: TypeScript */}
+      <div
+        class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+      >
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          TypeScript
+        </h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">
+          We write clean, scalable, and error-free code, ensuring your
+          application is robust and maintainable.
+        </p>
+      </div>
+    </div>
+  </ContentSection>
+
+  <section class="py-20 sm:py-24">
+    <div class="container mx-auto max-w-6xl px-4">
+      <h2 class="text-center text-3xl font-bold sm:text-4xl font-heading mb-12">
+        Meet the team
+      </h2>
+      <div class="grid gap-12 sm:grid-cols-2 lg:gap-16">
+        {
+          team.map(({ name, role, img, bio }) => (
+            <article class="flex flex-col items-center text-center space-y-4">
+              <img
+                src={img}
+                alt={name}
+                class="h-44 w-44 rounded-full object-cover shadow-lg"
+                loading="lazy"
+              />
+              <div class="flex flex-col items-center">
+                <h3 class="text-xl font-bold">{name}</h3>
+                <p class="text-muted-text mb-2">{role}</p>
+                <p class="max-w-xs">{bio}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
-  <!-- ───── CTA ───── -->
-  <section class="bg-gradient-to-br from-primary-600 to-primary-500 text-white">
+  <section class="bg-gray-100 dark:bg-gray-900">
     <div
       class="container mx-auto flex flex-col items-center gap-6 px-4 py-16 text-center"
     >
-      <h2 class="text-3xl font-semibold">Ready to level-up your website?</h2>
-      <p class="max-w-2xl text-white/90">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">
+        Ready to level-up your website?
+      </h2>
+      <p class="max-w-2xl text-gray-700 dark:text-gray-300">
         Book a quick, no-pressure call and let’s see if our approach is the
         right fit.
       </p>
       <a
         href="/contact"
-        class="inline-block rounded-lg bg-white/90 px-8 py-3 font-medium text-primary-700 transition hover:bg-white"
+        class="inline-block rounded-lg px-8 py-3 font-medium transition
+         bg-gray-800 text-white hover:bg-black
+         dark:bg-gray-200 dark:text-gray-900 dark:hover:bg-white"
       >
         Schedule a call
       </a>

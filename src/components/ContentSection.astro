@@ -1,0 +1,16 @@
+---
+// src/components/ContentSection.astro
+interface Props {
+  class?: string;
+}
+const { class: extraClasses = "" } = Astro.props;
+
+// Combine our base classes with any extra classes passed in.
+const all_classes = `py-16 sm:py-20 ${extraClasses}`;
+---
+
+<section class={all_classes}>
+  <div class="mx-auto max-w-screen-xl px-6 sm:px-8 lg:px-12">
+    <slot />
+  </div>
+</section>
