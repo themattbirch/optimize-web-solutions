@@ -4,16 +4,15 @@ import { Image } from "astro:assets";
 import teamImage from "../assets/images/ows-design-team.png";
 ---
 
-<section class="px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
+<section class="px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
   <div class="mx-auto max-w-screen-xl">
-    <!-- mobile → 1 col,   md → 2 cols -->
     <div class="grid gap-12 lg:grid-cols-2 items-center">
-      <div class="text-center md:text-left px-4 md:px-0">
+      <div class="text-center md:text-left">
         <h2 class="font-heading text-3xl font-bold sm:text-4xl">
           Your Partner for Transparent, Hands-On Web Development
         </h2>
 
-        <p class="mt-8 sm:mt-12 text-muted-text">
+        <p class="mt-8 text-muted-text">
           Say goodbye to one-size-fits-all agencies that disappear after
           kickoff. We work side-by-side with you, offering clear updates,
           collaborative brainstorming, and absolute clarity on timelines and
@@ -26,7 +25,7 @@ import teamImage from "../assets/images/ows-design-team.png";
           and delights your customers.
         </p>
       </div>
-      <div class="lg:order-2 px-4 md:px-0">
+      <div class="lg:order-2">
         <Image
           src={teamImage}
           alt="Optimize Web Solutions team collaborating on a website design"

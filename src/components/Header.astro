@@ -21,7 +21,7 @@ const links = [
          scrolled-self:!bg-slate-100 scrolled-self:dark:!bg-slate-900/90
          scrolled-self:shadow-lg scrolled-self:backdrop-blur-sm"
 >
-  <!-- ─────────────────── INNER WRAPPER ─────────────────── -->
+  <!--  ─────────── INNER WRAPPER ───────────  -->
   <div
     class="mx-auto flex max-w-screen-xl items-center justify-between
            px-4 py-4 md:py-5 transition-all duration-300
@@ -42,15 +42,16 @@ const links = [
     <!-- Desktop nav -->
     <nav class="hidden lg:flex items-center gap-6 font-heading">
       <ThemeToggle client:load className="text-gray-900 dark:text-white" />
-
       {
         links.map((l) => (
           <a
             href={l.path}
             aria-current={Astro.url.pathname === l.path ? "page" : undefined}
             class="nav-link relative inline-block px-3 py-2 font-medium
-                 text-gray-900 dark:text-white transition-colors duration-200
-                 hover:text-accent-primary focus-visible:outline-none
+                 text-gray-900 dark:text-white
+                 transition-colors duration-200
+                 hover:text-accent-primary
+                 focus-visible:outline-none
                  focus-visible:ring-2 focus-visible:ring-accent-primary"
           >
             {l.title}
@@ -64,7 +65,8 @@ const links = [
       <ThemeToggle client:load className="text-gray-900 dark:text-white" />
       <button
         id="mobile-menu-button"
-        class="p-2 rounded-md focus:outline-none text-gray-900 dark:text-white"
+        class="p-2 rounded-md focus:outline-none
+               text-gray-900 dark:text-gray-200"
         aria-expanded="false"
         aria-label="Open menu"
       >
@@ -74,8 +76,13 @@ const links = [
     </div>
   </div>
 
-  <!-- ─────────────────── MOBILE MENU ─────────────────── -->
-  <nav id="mobile-menu" class="lg:hidden absolute top-full inset-x-0 z-20 p-4">
+  <!--  ─────────── MOBILE MENU  ───────────  -->
+  <nav
+    id="mobile-menu"
+    class="lg:hidden absolute top-full inset-x-0 z-20 p-4
+           dark:bg-slate-900/80 dark:backdrop-blur-md
+           dark:ring-1 dark:ring-slate-700"
+  >
     <ul class="space-y-2">
       {
         links.map((l) => (
@@ -84,9 +91,10 @@ const links = [
               href={l.path}
               aria-current={Astro.url.pathname === l.path ? "page" : undefined}
               class="nav-link-mobile relative block px-3 py-2 rounded-md
-                   text-gray-900 dark:text-gray-300
+                   text-gray-900 dark:text-gray-100
                    transition-colors duration-200
-                   hover:bg-gray-100 dark:hover:bg-gray-700"
+                   hover:bg-gray-100 dark:hover:bg-slate-800
+                   dark:hover:border-l-4 dark:hover:border-accent-primary"
             >
               {l.title}
             </a>
@@ -96,7 +104,7 @@ const links = [
     </ul>
   </nav>
 
-  <!-- ─────────────────── JS: scroll + mobile menu ─────────────────── -->
+  <!--  ───────────  JS (scroll & mobile menu) ───────────  -->
   <script is:inline>
     const header = document.getElementById("site-header");
     const mobileBtn = document.getElementById("mobile-menu-button");
@@ -106,7 +114,10 @@ const links = [
 
     // shrink header on scroll
     const onScroll = () =>
-      header.classList.toggle("scrolled", window.scrollY > SCROLL_THRESHOLD);
+      header.classList.toggle(
+        "scrolled-self",
+        window.scrollY > SCROLL_THRESHOLD,
+      );
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll(); // run once on load
 
@@ -119,9 +130,8 @@ const links = [
     });
   </script>
 
-  <!-- ─────────────────── GLOBAL LINK UNDERLINES ─────────────────── -->
+  <!--  ───────────  GLOBAL LINK UNDERLINES  ───────────  -->
   <style is:global>
-    /* desktop */
     .nav-link::after {
       content: "";
       position: absolute;
@@ -136,11 +146,6 @@ const links = [
         left 0.3s ease,
         opacity 0.3s ease;
     }
-    @media (max-width: 1023px) {
-      .nav-link-mobile[aria-current="page"]::after {
-        display: none;
-      }
-    }
     .nav-link:hover::after,
     .nav-link[aria-current="page"]::after {
       width: 100%;
@@ -148,11 +153,7 @@ const links = [
       opacity: 0.7;
     }
 
-    /* mobile – need relative positioning for underline */
-    .nav-link-mobile {
-      position: relative;
-    }
-    /* ─── remove mobile underlines entirely ─── */
+    /* remove mobile underlines entirely */
     @media (max-width: 1023px) {
       .nav-link-mobile::after {
         display: none !important;

@@ -4,16 +4,16 @@
 
 <section
   id="final-cta"
-  class="relative overflow-hidden text-center text-background dark:text-background"
+  class="relative overflow-hidden bg-white dark:bg-background text-center text-background dark:text-white"
 >
-  <!-- Gradient backdrop -->
+  <!-- Gradient backdrop sits above section background -->
   <div
-    class="absolute inset-0 -z-30 bg-gradient-to-tr from-[#ff6b00] via-[#ff7700] to-[#ff5200]"
+    class="absolute inset-0 z-0 bg-gradient-to-tr from-[#E65C00] via-[#E67D00] to-[#D94D00]"
   >
   </div>
 
-  <!-- Top wave (merges into black section above) -->
-  <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] -z-20">
+  <!-- Top wave merges into section background and overlaps gradient -->
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-10">
     <svg
       class="relative block w-[calc(140%+1px)] h-[60px] sm:h-[100px] -translate-x-[20%] fill-white dark:fill-[#121212]"
       viewBox="0 0 1440 100"
@@ -25,9 +25,9 @@
     </svg>
   </div>
 
-  <!-- Bottom wave (melts into footer) -->
+  <!-- Bottom wave overlaps gradient and transitions into footer -->
   <div
-    class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] -z-20 rotate-180"
+    class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-10 rotate-180"
   >
     <svg
       class="relative block fill-white dark:fill-[#121212] w-[calc(140%+1px)] h-[60px] sm:h-[100px] -translate-x-[20%]"
@@ -40,13 +40,18 @@
     </svg>
   </div>
 
-  <!-- Content -->
+  <!-- Content with text-shadow for lift (z-index above waves) -->
   <div
-    class="relative mx-auto max-w-2xl
-         px-4 py-[72px]
-         sm:px-6 sm:py-[72px]
-         md:px-8 lg:px-0"
+    class="relative z-20 mx-auto max-w-2xl px-4 py-[72px] sm:px-6 sm:py-[72px] md:px-8 lg:px-0"
   >
+    <style is:global>
+      #final-cta h2,
+      #final-cta p,
+      #final-cta a {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      }
+    </style>
+
     <h2
       class="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
     >
@@ -60,7 +65,7 @@
 
     <a
       href="/contact"
-      class="mt-8 inline-flex items-center justify-center rounded-full bg-background/90 px-8 py-3 text-base font-semibold text-[#ff5200] shadow-lg ring-2 ring-background transition-all duration-300 hover:-translate-y-1 hover:bg-transparent hover:text-background hover:shadow-xl dark:hover:text-background"
+      class="mt-8 inline-flex items-center justify-center rounded-full bg-background/90 px-8 py-3 text-base font-semibold text-[#ff5200] shadow-lg ring-2 ring-background transition-all duration-300 hover:-translate-y-1 hover:bg-transparent hover:text-background hover:shadow-xl dark:hover:text-white"
     >
       Get Help Now
     </a>

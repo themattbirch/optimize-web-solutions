@@ -4,14 +4,14 @@ const { class: extraClasses = "", ...rest } = Astro.props;
 
 <section
   class:list={[
-    "relative isolate text-background-dark dark:text-white",
+    "relative isolate overflow-hidden text-background-dark dark:text-white",
     "px-4 sm:px-6 lg:px-8",
     extraClasses,
   ]}
   {...rest}
 >
   <!-- ───────────────── BASE COLORS ───────────────── -->
-  <div class="absolute inset-0 bg-white dark:bg-gray-950"></div>
+  <div class="absolute inset-0 bg-white dark:bg-[#121212]"></div>
 
   <!-- ───────────────── GRADIENT MESH ───────────────── -->
   <div
@@ -23,18 +23,18 @@ const { class: extraClasses = "", ...rest } = Astro.props;
   <!-- ───────────────── DIMMER ───────────────── -->
   <div
     id="dimmer"
-    class="absolute inset-0 bg-slate-900/0 dark:bg-slate-950/0 pointer-events-none"
+    class="absolute inset-0 bg-slate-900/0 dark:bg-[#121212]/0 pointer-events-none"
   >
   </div>
 
   <!-- ───────────────── CONTENT ───────────────── -->
   <div
-    class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6
-              lg:flex lg:h-screen lg:items-center lg:px-8"
+    class="relative mx-auto max-w-screen-xl
+           px-4 pt-40 pb-24 sm:pt-48 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
   >
     <div class="mx-auto max-w-3xl text-center">
       <h1
-        class="font-heading text-4xl font-extrabold sm:text-6xl dark:text-shadow-lg"
+        class="font-heading text-4xl font-extrabold sm:text-6xl dark:text-shadow-lg dark:text-white"
       >
         We Build Websites That Work as Hard as You Do
       </h1>
@@ -53,7 +53,7 @@ const { class: extraClasses = "", ...rest } = Astro.props;
           class="block w-full rounded-lg px-12 py-4 text-lg font-bold text-black dark:text-white shadow
                   transition-transform duration-300 focus:outline-none focus:ring sm:w-auto
                   bg-orange-500 hover:bg-orange-600 dark:bg-accent-primary dark:hover:bg-orange-700
-                  hover:scale-105 dark:shadow-[0_0_10px_2px_rgba(255,153,0,0.45)]"
+                  hover:scale-105 dark:shadow-[0_0_12px_2px_rgba(255,153,0,0.55)]"
         >
           Get Help Now
         </a>
@@ -76,12 +76,10 @@ const { class: extraClasses = "", ...rest } = Astro.props;
   <style is:global>
     /* Mesh gradients */
     .mesh-gradient {
-      /* taller to extend down past buttons */
       background-size: 160% 200%;
-      /* shift blob down so the warm center sits lower */
       background-position: center 40%;
       background-repeat: no-repeat;
-      opacity: 0.95; /* light */
+      opacity: 0.9; /* slightly lower for subtler effect in light */
       transition: background-image 0.6s ease;
     }
     .mesh-gradient {
@@ -90,11 +88,9 @@ const { class: extraClasses = "", ...rest } = Astro.props;
 
     .dark .mesh-gradient {
       background-size: 160% 200%;
-      /* shift blob down so the warm center sits lower */
       background-position: center 40%;
       background-repeat: no-repeat;
-      opacity: 0.6; /* light */
-      transition: background-image 0.6s ease;
+      opacity: 0.7; /* improved contrast in dark */
     }
 
     /* Slow drift animation */
@@ -112,7 +108,7 @@ const { class: extraClasses = "", ...rest } = Astro.props;
 
     /* Text glow for dark mode */
     .dark .text-shadow-lg {
-      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
     }
   </style>
 
@@ -121,10 +117,10 @@ const { class: extraClasses = "", ...rest } = Astro.props;
     const mesh = document.getElementById("mesh");
     const dimmer = document.getElementById("dimmer");
 
-    const MAX_OPACITY_LIGHT = 0.45;
-    const MAX_OPACITY_DARK = 0.9; // stronger fade for dark theme
+    const MAX_OPACITY_LIGHT = 0.1;
+    const MAX_OPACITY_DARK = 0.8; // slightly reduced for readability
     const MAX_SHIFT_LIGHT = 40; // px mesh moves downward (light)
-    const MAX_SHIFT_DARK = 60; // deeper parallax in dark mode
+    const MAX_SHIFT_DARK = 50; // adjusted for smoother parallax in dark
 
     const applyScroll = () => {
       const ratio = Math.min(window.scrollY / 600, 1);
@@ -133,7 +129,7 @@ const { class: extraClasses = "", ...rest } = Astro.props;
       const limit = isDark ? MAX_OPACITY_DARK : MAX_OPACITY_LIGHT;
       const shift = isDark ? MAX_SHIFT_DARK : MAX_SHIFT_LIGHT;
 
-      dimmer.style.backgroundColor = `rgba(20,24,31,${ratio * limit})`;
+      dimmer.style.backgroundColor = `rgba(18,18,18,${ratio * MAX_OPACITY_LIGHT})`;
       mesh.style.transform = `translateY(${ratio * shift}px)`;
     };
 

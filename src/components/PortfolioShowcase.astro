@@ -3,16 +3,12 @@
 const portfolioImageSrc = "/images/cgn_full.webp";
 ---
 
-<!-- no px-* here: vertical padding only -->
-<section class="pb-20 lg:pb-32">
-  <!-- single keeper of the horizontal gutters -->
+<section class="py-20 lg:py-32">
   <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-    <!-- centred copy block, no extra padding -->
     <div class="text-center mx-auto max-w-2xl">
       <h2 class="font-heading text-3xl font-bold sm:text-4xl">
         The Quality of Our Work Speaks for Itself
       </h2>
-
       <p class="mt-8 sm:mt-12 text-muted-text">
         Curious how your new site could look? Check out this recent client
         build. Hover over the image to animate and scroll down to explore
@@ -20,36 +16,39 @@ const portfolioImageSrc = "/images/cgn_full.webp";
       </p>
     </div>
 
-    <!-- scrolling screenshot -->
-    <div class="mt-12">
+    <!-- Showcase frame -->
+    <div class="mt-12 group/shot">
+      <!-- browser chrome bar -->
       <div
-        class="flex h-8 items-center gap-2 rounded-t-lg
-                  bg-gray-200 dark:bg-background/70"
+        class="flex h-8 items-center gap-2 rounded-t-lg bg-gray-200 dark:bg-background/70"
       >
         <div class="h-3 w-3 rounded-full bg-red-500"></div>
         <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
         <div class="h-3 w-3 rounded-full bg-green-500"></div>
       </div>
 
-      <!-- make the scrolling frame relative so the overlay can be absolutely positioned -->
       <div
-        class="overflow-hidden rounded-b-lg h-[600px] portfolio-showcase relative"
+        class="relative overflow-hidden rounded-b-lg ring-1 ring-slate-200/60 dark:ring-[#2A2A2A] shadow-lg h-[600px] portfolio-showcase"
       >
         <div class="h-full overflow-y-auto scroll-container hide-scrollbar">
           <img
             src={portfolioImageSrc}
             alt="Chris Gordon News website"
             loading="lazy"
-            class="w-full object-cover"
+            class="w-full object-cover transition-transform duration-700 group-hover/shot:scale-[1.02]"
           />
         </div>
 
-        <!-- gradient overlay: fades to transparent, disappears on hover -->
+        <!-- gradient overlay → fades on hover -->
         <div
-          class="pointer-events-none absolute inset-x-0 bottom-0 h-16
-           bg-gradient-to-t from-background via-background/80 to-transparent
-           opacity-90 transition-opacity duration-300
-           group-hover:opacity-0"
+          class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background via-background/95 to-transparent opacity-90 transition-opacity duration-300 group-hover/shot:opacity-0"
+        >
+        </div>
+
+        <!-- spotlight effect on hover -->
+        <div
+          class="pointer-events-none absolute inset-0 opacity-0 group-hover/shot:opacity-100 transition-opacity duration-300"
+          style="background: radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 60%);"
         >
         </div>
       </div>
@@ -67,33 +66,18 @@ const portfolioImageSrc = "/images/cgn_full.webp";
   </style>
 
   <script is:inline>
-    // ——————————————————————————
-    // Scroll-preview logic in plain JS
-    // ——————————————————————————
-    /** @type {HTMLDivElement|null} */
     const showcase = document.querySelector(".portfolio-showcase");
     if (!showcase) throw new Error("PortfolioShowcase element not found.");
-
-    /** @type {HTMLDivElement|null} */
     const scrollable = showcase.querySelector(".scroll-container");
     if (!scrollable) throw new Error("Scrollable container not found.");
 
     let frameId = null;
-    const duration = 8000; // ms – total scroll time
-    const delay = 300; // ms – pause before starting
+    const duration = 8000;
+    const delay = 300;
 
-    /**
-     * cubic ease-in-out
-     * @param {number} t
-     * @return {number}
-     */
     const easeInOutCubic = (t) =>
       t < 0.5 ? 4 * t ** 3 : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-    /**
-     * Animate vertical scroll
-     * @param {number} to
-     */
     const animateScroll = (to) => {
       const start = scrollable.scrollTop;
       const change = to - start;
@@ -104,17 +88,15 @@ const portfolioImageSrc = "/images/cgn_full.webp";
         scrollable.scrollTop = start + change * easeInOutCubic(progress);
         if (progress < 1) frameId = requestAnimationFrame(step);
       };
-
-      if (frameId !== null) cancelAnimationFrame(frameId);
+      if (frameId) cancelAnimationFrame(frameId);
       frameId = requestAnimationFrame(step);
     };
 
     showcase.addEventListener("mouseenter", () => {
       setTimeout(() => animateScroll(scrollable.scrollHeight), delay);
     });
-
     showcase.addEventListener("mouseleave", () => {
-      if (frameId !== null) cancelAnimationFrame(frameId);
+      if (frameId) cancelAnimationFrame(frameId);
       scrollable.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
