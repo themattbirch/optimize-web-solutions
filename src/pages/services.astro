@@ -198,13 +198,23 @@ const pricingPlans = [
   {/* ───────── FINAL CTA ───────── */}
   <section
     id="final-cta"
-    class="relative overflow-hidden text-center text-background dark:text-background"
+    class="relative overflow-hidden text-center text-gray-800 dark:text-white"
   >
+    {/* Base fill + subtle dark-mode noise */}
     <div
-      class="absolute inset-0 -z-30 bg-gradient-to-tr from-[#ff6b00] via-[#ff7700] to-[#ff5200]"
+      class="absolute inset-0 -z-30 bg-white dark:bg-[#121212] dark:pattern-bg"
     >
     </div>
-    <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] -z-20">
+
+    {/* Radial spotlight behind content */}
+    <div
+      class="pointer-events-none absolute inset-0 -z-20"
+      style="background: radial-gradient(circle at center, rgba(255,153,0,0.16) 0%, transparent 65%);"
+    >
+    </div>
+
+    {/* Top wave divider */}
+    <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] -z-10">
       <svg
         class="relative block h-[60px] w-[calc(140%+1px)] -translate-x-[20%] fill-[#f3f4f6] dark:fill-[#121212] sm:h-[100px]"
         viewBox="0 0 1440 100"
@@ -215,11 +225,13 @@ const pricingPlans = [
         ></path>
       </svg>
     </div>
+
+    {/* Bottom wave divider */}
     <div
-      class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] -z-20 rotate-180"
+      class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] -z-10 rotate-180"
     >
       <svg
-        class="relative block h-[80px] w-[calc(140%+1px)] -translate-x-[20%] fill-[#f3f4f6] dark:fill-[#121212] sm:h-[120px]"
+        class="relative block h-[80px] w-[calc(140%+1px)] -translate-x-[20%] fill-white dark:fill-[#121212] sm:h-[120px]"
         viewBox="0 0 1440 100"
         preserveAspectRatio="none"
       >
@@ -228,8 +240,9 @@ const pricingPlans = [
         ></path>
       </svg>
     </div>
+
     <div
-      class="relative mx-auto max-w-2xl px-4 pt-20 pb-16 sm:px-6 sm:pt-24 sm:pb-20 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28"
+      class="relative mx-auto max-w-2xl px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-18 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24"
     >
       <h2
         class="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
@@ -242,7 +255,7 @@ const pricingPlans = [
       </p>
       <a
         href="/contact"
-        class="mt-8 inline-flex items-center justify-center rounded-full bg-background/90 px-8 py-3 text-base font-semibold text-[#ff5200] shadow-lg ring-2 ring-background transition duration-300 hover:-translate-y-1 hover:bg-transparent hover:text-background hover:shadow-xl dark:hover:text-background"
+        class="mt-8 inline-flex items-center justify-center rounded-full bg-[#ff5200] px-8 py-3 text-base font-semibold text-white shadow-lg ring-2 ring-transparent transition duration-300 hover:-translate-y-1 hover:bg-[#ff6b00] hover:shadow-xl"
       >
         Book a Call
       </a>
