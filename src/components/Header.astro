@@ -14,18 +14,17 @@ const links = [
 ];
 ---
 
+<!-- ─── HEADER ────────────────────────────────────────────────────────────── -->
 <header
   id="site-header"
-  class="sticky top-0 z-50 w-full bg-slate-100 dark:bg-slate-900 transition-all duration-300
-         shadow-none backdrop-blur-0
-         scrolled-self:!bg-slate-100 scrolled-self:dark:!bg-slate-900/90
-         scrolled-self:shadow-lg scrolled-self:backdrop-blur-sm"
+  class="sticky top-0 z-50 w-full
+         bg-transparent dark:bg-transparent transition-all duration-300
+         shadow-none backdrop-blur-0"
 >
-  <!--  ─────────── INNER WRAPPER ───────────  -->
+  <!-- inner wrapper (used for padding shrink) -->
   <div
-    class="mx-auto flex max-w-screen-xl items-center justify-between
-           px-4 py-4 md:py-5 transition-all duration-300
-           scrolled-self:py-3"
+    class="inner mx-auto flex max-w-screen-xl items-center justify-between
+           px-4 py-4 md:py-5 transition-all duration-300"
   >
     <!-- Logo -->
     <a href="/" aria-label="Optimize Web Solutions" class="shrink-0">
@@ -42,22 +41,20 @@ const links = [
     <!-- Desktop nav -->
     <nav class="hidden lg:flex items-center gap-6 font-heading">
       <ThemeToggle client:load className="text-gray-900 dark:text-white" />
-      {
-        links.map((l) => (
-          <a
-            href={l.path}
-            aria-current={Astro.url.pathname === l.path ? "page" : undefined}
-            class="nav-link relative inline-block px-3 py-2 font-medium
+      {links.map((l) => (
+        <a
+          href={l.path}
+          aria-current={Astro.url.pathname === l.path ? 'page' : undefined}
+          class="nav-link relative inline-block px-3 py-2 font-medium
                  text-gray-900 dark:text-white
                  transition-colors duration-200
                  hover:text-accent-primary
                  focus-visible:outline-none
                  focus-visible:ring-2 focus-visible:ring-accent-primary"
-          >
-            {l.title}
-          </a>
-        ))
-      }
+        >
+          {l.title}
+        </a>
+      ))}
     </nav>
 
     <!-- Mobile toggle -->
@@ -65,8 +62,7 @@ const links = [
       <ThemeToggle client:load className="text-gray-900 dark:text-white" />
       <button
         id="mobile-menu-button"
-        class="p-2 rounded-md focus:outline-none
-               text-gray-900 dark:text-gray-200"
+        class="p-2 rounded-md focus:outline-none text-gray-900 dark:text-gray-200"
         aria-expanded="false"
         aria-label="Open menu"
       >
@@ -76,7 +72,7 @@ const links = [
     </div>
   </div>
 
-  <!--  ─────────── MOBILE MENU  ───────────  -->
+  <!-- ─── MOBILE MENU ─────────────────────────────────────────────────────── -->
   <nav
     id="mobile-menu"
     class="lg:hidden absolute top-full inset-x-0 z-20 p-4
@@ -84,54 +80,59 @@ const links = [
            dark:ring-1 dark:ring-slate-700"
   >
     <ul class="space-y-2">
-      {
-        links.map((l) => (
-          <li>
-            <a
-              href={l.path}
-              aria-current={Astro.url.pathname === l.path ? "page" : undefined}
-              class="nav-link-mobile relative block px-3 py-2 rounded-md
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.path}
+            aria-current={Astro.url.pathname === l.path ? 'page' : undefined}
+            class="nav-link-mobile relative block px-3 py-2 rounded-md
                    text-gray-900 dark:text-gray-100
                    transition-colors duration-200
                    hover:bg-gray-100 dark:hover:bg-slate-800
                    dark:hover:border-l-4 dark:hover:border-accent-primary"
-            >
-              {l.title}
-            </a>
-          </li>
-        ))
-      }
+          >
+            {l.title}
+          </a>
+        </li>
+      ))}
     </ul>
   </nav>
 
-  <!--  ───────────  JS (scroll & mobile menu) ───────────  -->
+  <!-- ─── JS (scroll + mobile menu) ───────────────────────────────────────── -->
   <script is:inline>
-    const header = document.getElementById("site-header");
-    const mobileBtn = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const [openIcon, closeIcon] = mobileBtn.querySelectorAll("svg");
+    const header      = document.getElementById('site-header');
+    const inner       = header.querySelector('.inner');
+    const mobileBtn   = document.getElementById('mobile-menu-button');
+    const mobileMenu  = document.getElementById('mobile-menu');
+    const [openIcon, closeIcon] = mobileBtn.querySelectorAll('svg');
     const SCROLL_THRESHOLD = 10;
 
-    // shrink header on scroll
+    // toggles sticky styling
     const onScroll = () =>
-      header.classList.toggle(
-        "scrolled-self",
-        window.scrollY > SCROLL_THRESHOLD,
-      );
-    window.addEventListener("scroll", onScroll, { passive: true });
+      header.toggleAttribute('data-scrolled', window.scrollY > SCROLL_THRESHOLD);
+    window.addEventListener('scroll', onScroll, { passive: true });
     onScroll(); // run once on load
 
     // mobile-menu toggle
-    mobileBtn.addEventListener("click", () => {
-      const isOpen = mobileMenu.classList.toggle("mobile-menu-open");
-      mobileBtn.setAttribute("aria-expanded", String(isOpen));
-      openIcon.classList.toggle("hidden", isOpen);
-      closeIcon.classList.toggle("hidden", !isOpen);
+    mobileBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('mobile-menu-open');
+      mobileBtn.setAttribute('aria-expanded', String(isOpen));
+      openIcon.classList.toggle('hidden', isOpen);
+      closeIcon.classList.toggle('hidden', !isOpen);
     });
   </script>
 
-  <!--  ───────────  GLOBAL LINK UNDERLINES  ───────────  -->
+  <!-- ─── GLOBAL STYLES ───────────────────────────────────────────────────── -->
   <style is:global>
+    /* sticky state */
+    #site-header[data-scrolled] {
+      @apply bg-slate-100 dark:bg-slate-900/90 shadow-lg backdrop-blur-sm;
+    }
+    #site-header[data-scrolled] .inner {
+      @apply py-3;
+    }
+
+    /* link underlines */
     .nav-link::after {
       content: "";
       position: absolute;
@@ -141,13 +142,10 @@ const links = [
       height: 2px;
       background-color: var(--accent-primary, #ff9900);
       opacity: 0.5;
-      transition:
-        width 0.3s ease,
-        left 0.3s ease,
-        opacity 0.3s ease;
+      transition: width 0.3s ease, left 0.3s ease, opacity 0.3s ease;
     }
     .nav-link:hover::after,
-    .nav-link[aria-current="page"]::after {
+    .nav-link[aria-current='page']::after {
       width: 100%;
       left: 0;
       opacity: 0.7;
