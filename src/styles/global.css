@@ -63,7 +63,7 @@
 .mobile-dropdown-toggle svg {
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-/* Rotates the arrow when the button has the .is-open class */
+/* Rotates arrow when the button has the .is-open class */
 .mobile-dropdown-toggle.is-open svg {
   transform: rotate(180deg);
 }
