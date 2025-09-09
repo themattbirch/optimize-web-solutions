@@ -4,8 +4,8 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Contact Us | Optimize Web Solutions"
-  description="Get in touch with Optimize Web Solutions today for a free consultation on your web development project. Let's build something great together."
+  title="Contact | Optimize Web Solutions — Boutique Product Studio"
+  description="Talk directly with the builder. Schedule a quick call to scope your MVP, dashboard, or full-stack application. Typical response within one business day."
   ogImage="/images/contact-us-office.jpg"
 >
   <!-- ───── Hero ───── -->
@@ -13,11 +13,11 @@ import Layout from "../layouts/Layout.astro";
     class="relative mx-auto max-w-screen-xl text-center px-4 sm:px-6 py-20 sm:py-24 lg:py-32"
   >
     <h1 class="font-heading text-5xl font-extrabold leading-tight md:text-6xl">
-      Contact Us
+      Talk to a Builder
     </h1>
     <p class="mx-auto mt-8 max-w-2xl text-lg text-muted-text">
-      Have a question or ready to start a project? Pick the channel that works
-      best for you—we’ll reply within one business day.
+      Ready to scope an MVP or application? Choose a channel—we typically reply
+      within one business day.
     </p>
   </section>
 
@@ -25,11 +25,13 @@ import Layout from "../layouts/Layout.astro";
     <div class="flex flex-wrap justify-center gap-8 lg:grid lg:grid-cols-3">
       {/* Phone */}
       <a
+        aria-label="Call Optimize Web Solutions"
         href="tel:7035993188"
-        class="group w-full max-w-md rounded-2xl bg-white/80 backdrop-blur-sm ring-1 ring-inset dark:bg-white/5 ring-black/10 dark:ring-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 px-8 py-12 text-center transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-2 hover:ring-brand/40 md:w-[calc(50%-1rem)] lg:w-auto lg:max-w-none"
+        class="group w-full max-w-md rounded-2xl bg-white/80 backdrop-blur-sm ring-1 ring-inset dark:bg-white/5 ring-black/10 dark:ring-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 px-8 py-12 text-center transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-2 hover:ring-brand/40 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/40 md:w-[calc(50%-1rem)] lg:w-auto lg:max-w-none"
       >
         <svg
           xmlns="http: www.w3.org 2000 svg"
+          aria-hidden="true"
           viewBox="0 0 24 24"
           fill="currentColor"
           class="mx-auto mb-6 h-8 w-8 text-brand/70 transition-colors group-hover:text-brand"
@@ -42,13 +44,14 @@ import Layout from "../layouts/Layout.astro";
         <h3
           class="text-xl font-semibold tracking-tight transition-colors group-hover:text-brand"
         >
-          Call Us
+          Call
         </h3>
-        <p class="mt-4 text-lg text-muted-text">703-599-3188</p>
+        <p class="mt-4 text-lg text-muted-text select-all">703-599-3188</p>
       </a>
 
       {/* Email */}
       <a
+        aria-label="Email Optimize Web Solutions"
         href="mailto:matt@optimizewebsolutions.com"
         class="group w-full max-w-md rounded-2xl bg-white/80 backdrop-blur-sm ring-1 ring-inset dark:bg-white/5 ring-black/10 dark:ring-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 px-8 py-12 text-center transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-2 hover:ring-brand/40 md:w-[calc(50%-1rem)] lg:w-auto lg:max-w-none"
       >
@@ -67,13 +70,20 @@ import Layout from "../layouts/Layout.astro";
         >
           Email Us
         </h3>
-        <p class="mt-4 text-lg text-muted-text select-all">
+        <p class="mt-4 text-lg text-muted-text select-all flex justify-center">
           matt@optimizewebsolutions.com
         </p>
       </a>
-
       {/* Address */}
       <a
+        aria-label="
+          Open
+          address
+          in
+          Google
+          Maps
+          (new
+          tab)"
         href="https://www.google.com/maps/place/11654+Plaza+America+Dr,+Reston,+VA+20190"
         rel="noopener"
         target="_blank"
@@ -104,21 +114,22 @@ import Layout from "../layouts/Layout.astro";
 
   <!-- Calendly CTA -->
   <section class="container mx-auto max-w-screen-md px-4 pb-20 text-center">
-    <h2 class="text-3xl font-semibold">Schedule a Call</h2>
+    <h2 class="text-3xl font-semibold">Schedule a Scope Call</h2>
     <p class="mx-auto mt-8 max-w-prose text-muted-text">
-      Prefer to chat face-to-face? Book a free 30-minute consultation and we’ll
-      walk you through how we can help.
+      30 minutes to align on goals, scope essentials, and timelines for a
+      launch-ready build.
     </p>
 
     <!-- ✨ updated button styles ✨ -->
     <a
+      aria-label="Open Calendly to book a 30-minute scope call (new tab)"
       href="https://calendly.com/optimize-web-solutions/30min?hide_gdpr_banner=1"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
       class="mt-10 inline-flex items-center justify-center gap-x-2 rounded-full
            bg-accent-primary px-8 py-4 font-semibold text-white
-           shadow-lg transition
-           hover:-translate-y-1 hover:bg-accent-primary/90
+           shadow-lg transition-all duration-300 ease-out
+           hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-accent-primary/90
            focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-primary/50
            dark:bg-accent-secondary dark:hover:bg-accent-secondary/90"
     >
@@ -136,3 +147,8 @@ import Layout from "../layouts/Layout.astro";
       allowfullscreen></iframe>
   </section>
 </Layout>
+<style is:global>
+  .dark .text-muted-text {
+    color: rgba(255, 255, 255, 0.78);
+  }
+</style>

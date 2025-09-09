@@ -5,63 +5,70 @@ import Layout from "../layouts/Layout.astro";
 /* ---------- DATA ARRAYS ---------- */
 const coreServices = [
   {
-    title: "Custom Web Design",
+    title: "MVP & Prototype Builds",
     iconBg: "bg-accent-primary/10",
     iconStroke: "text-accent-primary",
     bullets: [
-      "Responsive, mobile-first layouts that look great on any device",
-      "Core Web Vitals optimized for lightning-fast performance",
-      "Accessible, SEO-ready markup to capture more organic traffic",
+      "Idea to deploy: scope, UX, build, and launch in weeks—not months",
+      "Reliable React front-ends with Node/Supabase back-ends",
+      "Tight scopes, clean architecture, and clear handoff docs",
     ],
   },
   {
-    title: "SEO & Growth Marketing",
+    title: "Dashboards & Internal Tools",
     iconBg: "bg-accent-secondary/10",
     iconStroke: "text-accent-secondary",
     bullets: [
-      "Data-driven keyword research and content strategy",
-      "Google Business Profile setup and ongoing optimization",
-      "Transparent monthly reports showing clear ROI metrics",
+      "Custom analytics and admin panels tailored to your workflow",
+      "Secure APIs, auth-ready patterns, and role-based access",
+      "Data pipelines that stay fast, observable, and maintainable",
     ],
   },
   {
-    title: "Performance Optimization",
+    title: "Full-Stack Web Applications",
     iconBg: "bg-accent-primary/10",
     iconStroke: "text-accent-primary",
     bullets: [
-      "Comprehensive speed audits with actionable fixes",
-      "Hosting and CDN tuning for maximum uptime and reliability",
-      "Proactive monitoring and maintenance to keep your site running smoothly",
+      "Modern UX with component-driven React and TypeScript",
+      "Scalable Node services on Postgres/Supabase",
+      "Performance-first builds for speed, stability, and SEO",
     ],
   },
 ];
 
 const pricingPlans = [
   {
-    name: "Starter Site",
-    tagline: "Live in 14 business days—or less.",
-    price: "$1,397",
-    bullets: ["3 pages", "Cloud hosting + SSL", "Two stock images"],
-    cta: "Get Started",
-  },
-  {
-    name: "Growth Package",
-    tagline: "Site + SEO foundation.",
-    price: "$1,997",
+    name: "Fixed-Scope MVP",
+    tagline: "Idea → UX → Build → Deploy.",
+    price: "From $6,000",
     bullets: [
-      "5 pages",
-      "WordPress SEO setup",
-      "Search-engine submission",
-      "Everything in Starter",
+      "Discovery & scope definition",
+      "Core features, clean architecture",
+      "Docs + deployment handoff",
     ],
-    cta: "Get Started",
+    cta: "Start a Scope Call",
   },
   {
-    name: "Custom Solution",
-    tagline: "Tailored to your goals.",
-    price: "CALL",
-    bullets: ["Landing pages", "Copywriting", "Ongoing maintenance"],
-    cta: "Request Quote",
+    name: "Dashboards & Tools",
+    tagline: "Analytics, admin panels, and integrations.",
+    price: "From $3,500",
+    bullets: [
+      "Custom dashboards & CRUD flows",
+      "Secure APIs and auth patterns",
+      "Performance & reliability tuning",
+    ],
+    cta: "Request Estimate",
+  },
+  {
+    name: "Ongoing Partnership",
+    tagline: "Ship continuously with a steady cadence.",
+    price: "Monthly",
+    bullets: [
+      "Roadmap planning & iteration",
+      "Feature delivery & maintenance",
+      "Monitoring & performance care",
+    ],
+    cta: "Discuss Fit",
   },
 ];
 ---
@@ -78,19 +85,19 @@ const pricingPlans = [
     <h1
       class="font-heading text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
     >
-      Services That Move the Needle
+      Build the Right Thing — Then Ship It Fast
     </h1>
     <p
       class="mx-auto mt-8 max-w-2xl text-lg text-muted-text dark:text-white/80"
     >
-      Innovative design, search visibility, and speed enhancements to transform
-      your website into a sales engine.
+      We design and build modern applications—MVPs, dashboards, and full-stack
+      web apps— with a lean process and builder-direct collaboration.
     </p>
     <a
       href="/contact"
       class="mt-12 inline-flex items-center justify-center rounded-full bg-accent-primary px-8 py-3 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-accent-primary/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-primary/50"
     >
-      Book a Free Consult
+      Start a Scope Call
     </a>
   </section>
 
@@ -106,8 +113,7 @@ const pricingPlans = [
       <p
         class="mx-auto mt-8 max-w-2xl text-center text-muted-text dark:text-white/80"
       >
-        Three expert services united to drive real growth for your small
-        business.
+        Three focused offerings to take you from concept to launch—and beyond.
       </p>
 
       <div
@@ -116,7 +122,7 @@ const pricingPlans = [
         {
           coreServices.map((card) => (
             // Card container fix: Added dark:text-white to make all text inside it white in dark mode
-            <div class="group flex w-full max-w-md flex-col rounded-xl bg-white/70 p-8 shadow transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl dark:bg-white/5 dark:text-white md:w-[calc(50%-1rem)] lg:w-auto lg:max-w-none">
+            <div class="group flex w-full max-w-md flex-col rounded-xl bg-white/70 p-8 shadow transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl dark:bg-white/5 dark:text-white md:w-[calc(50%-1rem)] lg:w-auto lg:max-w-none hover:border-orange-400 border border-slate-200 dark:border-slate-700">
               <div
                 class={`flex h-14 w-14 items-center justify-center rounded-full ${card.iconBg}`}
               >
@@ -156,7 +162,7 @@ const pricingPlans = [
       <h2
         class="text-center font-heading text-3xl font-bold sm:text-4xl lg:text-5xl"
       >
-        Transparent Pricing — No Monthly Fees
+        Clear Engagements — Built Around Outcomes
       </h2>
 
       {/* ▼▼▼▼▼ UPDATED CONTAINER ▼▼▼▼▼ */}
@@ -184,7 +190,7 @@ const pricingPlans = [
 
               <a
                 href="/contact"
-                class="mt-auto inline-flex items-center justify-center rounded-full bg-accent-primary px-6 py-3 font-medium text-white shadow transition hover:-translate-y-1 hover:bg-accent-primary/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-primary/50"
+                class="mt-auto inline-flex items-center justify-center rounded-full bg-accent-primary px-6 py-3 font-medium text-white shadow transition hover:-translate-y-1 hover:bg-accent-primary/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-primary/50 transition-all duration-300 ease-out hover:shadow-lg hover:scale-105"
               >
                 {plan.cta}
               </a>
@@ -209,7 +215,7 @@ const pricingPlans = [
     {/* Radial spotlight behind content */}
     <div
       class="pointer-events-none absolute inset-0 -z-20"
-      style="background: radial-gradient(circle at center, rgba(255,153,0,0.16) 0%, transparent 65%);"
+      style="background: radial-gradient(circle at center, rgba(255,153,0,0.35) 0%, rgba(255,153,0,0.15) 50%, transparent 95%);"
     >
     </div>
 
@@ -242,22 +248,22 @@ const pricingPlans = [
     </div>
 
     <div
-      class="relative mx-auto max-w-2xl px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-18 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24"
+      class="relative mx-auto w-full max-w-6xl px-6 pt-24 pb-20 sm:px-8 md:pt-28 md:pb-24 lg:px-12"
     >
       <h2
-        class="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+        class="mx-auto max-w-3xl font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
       >
-        Ready to Scale Your Business?
+        Ready to Ship Your Application?
       </h2>
-      <p class="mx-auto mt-6 max-w-lg text-base sm:text-lg">
-        Schedule a quick chat about how we can make your website improve your
-        bottom line.
+      <p class="mx-auto mt-6 max-w-2xl text-lg sm:text-xl">
+        Schedule a quick call to map the fastest path from concept to a
+        launch-ready build.
       </p>
       <a
         href="/contact"
-        class="mt-8 inline-flex items-center justify-center rounded-full bg-[#ff5200] px-8 py-3 text-base font-semibold text-white shadow-lg ring-2 ring-transparent transition duration-300 hover:-translate-y-1 hover:bg-[#ff6b00] hover:shadow-xl"
+        class="mt-10 inline-flex items-center justify-center rounded-xl bg-[#ff5200] px-10 py-4 text-lg font-semibold text-white shadow-lg ring-2 ring-transparent transition-all duration-300 hover:-translate-y-1 hover:bg-[#ff6b00] hover:shadow-xl hover:scale-105"
       >
-        Book a Call
+        Start Your Build
       </a>
     </div>
   </section>

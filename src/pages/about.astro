@@ -1,39 +1,39 @@
 ---
 // src/pages/about.astro
 import Layout from "../layouts/Layout.astro";
-import ContentSection from "../components/ContentSection.astro"; // Assuming a reusable component for styling sections. If not, styles are inlined.
+import ContentSection from "../components/ContentSection.astro"; // Assuming a reusable component.
 
 const team = [
   {
     name: "Matt Birch",
-    role: "Founder & Design Lead",
+    role: "Founder & Full-Stack Engineer",
     img: "/images/matt-birch-tan-shirt-headshot.png",
-    bio: "A designer at heart, coder by trade, and writer by passion, Matt leverages 10+ years of web expertise to create user-focused sites so small businesses can thrive.",
+    bio: "Builder at heart with a writer’s clarity. Matt leads end-to-end product delivery—from UX and React front-ends to Node/Supabase back-ends—turning ideas into reliable, scalable software.",
   },
   {
     name: "Alex Chernoff",
     role: "Web Developer",
     img: "/images/alex_chernoff_sweater_headshot.png",
-    bio: "Alex blends sleek UI animations with savvy front-end architecture. He's fueled by cold brew coffee, pickleball and Real Madrid highlights.",
+    bio: "Alex blends sleek micro-interactions with thoughtful front-end architecture. Outside work: cold brew, pickleball, and Real Madrid highlights.",
   },
 ];
 ---
 
 <Layout
-  title="About Us | Optimize Web Solutions"
-  description="Get to know the small, senior-level team behind Optimize Web Solutions and see how our pragmatic approach delivers measurable results."
+  title="About | Optimize Web Solutions"
+  description="A boutique product studio for founders and small teams. We design and build modern applications—MVPs, dashboards, and websites—on a reliable React/Node foundation."
   ogImage="/images/optimize-web-solutions-inside-office-computer.jpg"
 >
   <section
     class="relative mx-auto max-w-screen-xl text-center px-4 sm:px-6 lg:px-8 py-20 lg:py-32"
   >
     <h1 class="font-heading text-5xl font-extrabold leading-tight md:text-6xl">
-      Small team. <br class="hidden md:inline" />Big results.
+      Small studio. <br class="hidden md:inline" />Big outcomes.
     </h1>
     <p class="mx-auto mt-6 max-w-2xl text-lg text-muted-text md:text-xl">
-      A tight-knit team means direct collaboration and rapid execution. We craft
-      responsive, user-first websites with effortless UX and deliver results
-      bigger agencies pitch, but rarely deliver.
+      We’re a hands-on product studio that ships working software fast.
+      Builder-direct communication, lean process, and deliverables you can
+      launch—without the big-agency overhead.
     </p>
   </section>
 
@@ -43,25 +43,25 @@ const team = [
         <h2
           class="font-heading text-3xl font-bold sm:text-4xl text-gray-900 dark:text-white"
         >
-          A True Partnership, From Start to Finish
+          A True Partnership, From Idea to Launch
         </h2>
         <p class="mt-6 text-lg text-gray-600 dark:text-gray-300">
-          We believe collaboration beats contracts. You’ll work side-by-side
-          with our senior front-end team at every stage—no middlemen, no
-          miscommunication.
+          Work directly with the engineer shipping your product. No layers, no
+          telephone game—just clear goals, rapid iterations, and steady progress
+          you can see.
         </p>
         <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
-          Together, we refine your vision in real time, iterate rapidly, and
-          deliver a website that not only launches on schedule but scales as
-          your business grows.
+          From discovery and UX to architecture, development, and deploy, we
+          keep scope tight and quality high—so your MVP lands on time and scales
+          cleanly.
         </p>
       </div>
-      {/* MODIFIED IMAGE CONTAINER */}
+
       <div class="flex items-center justify-center">
         <img
           class="w-full max-h-[360px] rounded-lg object-cover shadow-lg"
           src="/images/teamwork-collaboration-talking-office.jpg"
-          alt="The Optimize Web Solutions team collaborating."
+          alt="Collaborating on product design and development."
           loading="lazy"
         />
       </div>
@@ -79,9 +79,9 @@ const team = [
       <p
         class="mx-auto mt-16 max-w-2xl text-lg text-gray-600 dark:text-gray-300"
       >
-        We deliver an experience that is both visually appealing and loads
-        instantly on any device. Our performance-first approach reduces bounce
-        rates and maximizes conversions.
+        Clean UX, fast loads, stable releases. Our performance-first approach
+        improves user experience, search visibility, and conversion—across
+        devices and network conditions.
       </p>
     </div>
 
@@ -90,36 +90,75 @@ const team = [
     >
       <!-- Card 1: React -->
       <div
-        class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+        class="rounded-lg
+        border
+        border-slate-200
+        bg-white
+        p-6
+        shadow-sm
+        dark:border-slate-700
+        dark:bg-slate-800
+        transition-transform
+        duration-300
+        ease-out
+        hover:-translate-y-2
+        hover:shadow-md
+        hover:border-orange-400"
       >
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">React</h3>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
-          Creative, component-driven UIs that hydrate in milliseconds—keeping
-          interactions smooth and your customers engaged.
+          Component-driven UIs with smooth interactions and thoughtful state
+          management—built for clarity, reuse, and speed.
         </p>
       </div>
 
       <!-- Card 2: Astro -->
       <div
-        class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+        class="rounded-lg
+        border
+        border-slate-200
+        bg-white
+        p-6
+        shadow-sm
+        dark:border-slate-700
+        dark:bg-slate-800
+        transition-transform
+        duration-300
+        ease-out
+        hover:-translate-y-2
+        hover:shadow-md
+        hover:border-orange-400"
       >
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">Astro</h3>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
-          We leverage Astro’s server-first rendering—boosting SEO, cutting
-          bounce rates, and delighting users from their first visit on.
+          Server-first rendering and lean bundles for instant first paint,
+          better SEO, and less JavaScript where you don’t need it.
         </p>
       </div>
 
       <!-- Card 3: TypeScript -->
       <div
-        class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+        class="rounded-lg
+        border
+        border-slate-200
+        bg-white
+        p-6
+        shadow-sm
+        dark:border-slate-700
+        dark:bg-slate-800
+        transition-transform
+        duration-300
+        ease-out
+        hover:-translate-y-2
+        hover:shadow-md
+        hover:border-orange-400"
       >
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
           TypeScript
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
-          Static typing catches errors before they ship—so you get rock-solid,
-          maintainable code and faster feature rollouts.
+          Static typing catches errors early and keeps codebases maintainable—so
+          features ship faster and regressions stay rare.
         </p>
       </div>
     </div>
@@ -157,17 +196,19 @@ const team = [
       class="container mx-auto flex flex-col items-center gap-6 px-4 py-16 text-center"
     >
       <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">
-        Ready to upgrade your website?
+        Ready to ship your application?
       </h2>
       <p class="max-w-2xl text-gray-700 dark:text-gray-300">
-        Schedule a quick, no-obligation chat to discover how we can elevate your
-        web presence.
+        Schedule a quick, no-pressure chat. We’ll scope the essentials and map
+        the fastest path to a launch-ready build.
       </p>
       <a
         href="/contact"
-        class="inline-block rounded-lg px-8 py-3 font-medium transition
-         bg-gray-800 text-white hover:bg-black
-         dark:bg-gray-200 dark:text-gray-900 dark:hover:bg-white"
+        class="inline-block rounded-lg px-8 py-3 font-medium
+        bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-900
+        transition-all duration-300 ease-out
+        hover:scale-105 hover:shadow-lg hover:bg-black
+        dark:hover:bg-white dark:hover:text-black"
       >
         Schedule a call
       </a>

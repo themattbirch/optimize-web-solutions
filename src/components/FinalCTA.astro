@@ -6,13 +6,13 @@
   id="final-cta"
   class="relative overflow-hidden bg-white dark:bg-background text-center text-background dark:text-white"
 >
-  <!-- Gradient backdrop sits above section background -->
+  <!-- Gradient backdrop -->
   <div
-    class="absolute inset-0 z-0 bg-gradient-to-tr from-[#E65C00] via-[#E67D00] to-[#D94D00]"
+    class="absolute inset-0 z-0 bg-gradient-to-tr from-[#FF7E00] via-[#FF9500] to-[#FF5200]"
   >
   </div>
 
-  <!-- Top wave merges into section background and overlaps gradient -->
+  <!-- Top wave -->
   <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-10">
     <svg
       class="relative block w-[calc(140%+1px)] h-[60px] sm:h-[100px] -translate-x-[20%] fill-white dark:fill-[#121212]"
@@ -25,7 +25,7 @@
     </svg>
   </div>
 
-  <!-- Bottom wave overlaps gradient and transitions into footer -->
+  <!-- Bottom wave -->
   <div
     class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-10 rotate-180"
   >
@@ -40,34 +40,57 @@
     </svg>
   </div>
 
-  <!-- Content with text-shadow for lift (z-index above waves) -->
+  <!-- Content -->
   <div
     class="relative z-20 mx-auto max-w-2xl px-4 py-[72px] sm:px-6 sm:py-[72px] md:px-8 lg:px-0"
   >
     <style is:global>
       #final-cta h2,
-      #final-cta p,
+      #final-cta p {
+        color: #111; /* default */
+      }
       #final-cta a {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        background: #ff7e00;
+        color: #fff;
+        border: none;
+        text-shadow: none;
+      }
+      #final-cta a:hover {
+        background: #ff5200;
+      }
+
+      .dark #final-cta h2,
+      .dark #final-cta p {
+        color: #111; /* stronger contrast against orange */
+        text-shadow: none; /* remove glow, improves sharpness */
+      }
+
+      .dark #final-cta .bg-gradient-to-tr {
+        background-image: linear-gradient(
+          to top right,
+          #cc5200,
+          #e65c00,
+          #ff7e00
+        );
       }
     </style>
 
     <h2
       class="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
     >
-      Don’t Get Lost In Cyberspace
+      Ready to Launch Your Application?
     </h2>
 
     <p class="mx-auto mt-6 max-w-lg text-base sm:text-lg">
-      Turn browsers into buyers with a site built for speed, clarity, and
-      conversion.
+      From MVPs to dashboards, we design and build scalable applications that
+      help founders move fast and stay lean.
     </p>
 
     <a
       href="/contact"
-      class="mt-8 inline-flex items-center justify-center rounded-full bg-background/90 px-8 py-3 text-base font-semibold text-[#ff5200] shadow-lg ring-2 ring-background transition-all duration-300 hover:-translate-y-1 hover:bg-transparent hover:text-background hover:shadow-xl dark:hover:text-white"
+      class="mt-8 inline-flex items-center justify-center rounded-xl bg-white/95 px-8 py-3 text-base font-semibold text-[#ff5200] shadow-lg ring-2 ring-white transition-all duration-300 hover:-translate-y-1 hover:bg-transparent hover:text-white hover:shadow-xl"
     >
-      Get Help Now
+      Start Your Build
     </a>
   </div>
 </section>

@@ -1,4 +1,5 @@
 ---
+// src/components/HeroSection.astro
 const { class: extraClasses = "", ...rest } = Astro.props;
 ---
 
@@ -36,14 +37,15 @@ const { class: extraClasses = "", ...rest } = Astro.props;
       <h1
         class="font-heading text-4xl font-extrabold sm:text-6xl dark:text-shadow-lg dark:text-white"
       >
-        We Build Websites That Work as Hard as You Do
+        We Build Applications That Launch Quickly and Scale Cleanly
       </h1>
 
       <p
         class="mx-auto mt-6 max-w-xl sm:text-xl/relaxed text-gray-700 dark:text-white/90"
       >
-        Get a fast, responsive digital touchpoint designed to boost engagement
-        and drive real results.
+        MVPs, dashboards, and modern web apps—designed with clear UX and built
+        on a reliable React/Node foundation so you can ship fast and grow with
+        confidence.
       </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-4">
@@ -55,7 +57,7 @@ const { class: extraClasses = "", ...rest } = Astro.props;
                   bg-orange-500 hover:bg-orange-600 dark:bg-accent-primary dark:hover:bg-orange-700
                   hover:scale-105 dark:shadow-[0_0_12px_2px_rgba(255,153,0,0.55)]"
         >
-          Get Help Now
+          Start Your MVP
         </a>
 
         <!-- SECONDARY CTA -->
@@ -66,7 +68,7 @@ const { class: extraClasses = "", ...rest } = Astro.props;
                   border-accent-secondary text-black dark:text-white
                   hover:bg-accent-secondary hover:text-white hover:scale-105"
         >
-          Learn More
+          See Services
         </a>
       </div>
     </div>
@@ -111,7 +113,6 @@ const { class: extraClasses = "", ...rest } = Astro.props;
       text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
     }
   </style>
-
   <!-- ───────────────── SCROLL EFFECT JS ───────────────── -->
   <script is:inline>
     const mesh = document.getElementById("mesh");
