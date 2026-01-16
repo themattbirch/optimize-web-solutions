@@ -108,9 +108,8 @@ const finalOgImage = image
         "@type": "ProfessionalService",
         name: "Optimize Web Solutions",
         description:
-          "A web development company specializing in building fast, modern, and optimized websites for small businesses.",
+          "A boutique web design and development studio building fast, modern websites for small businesses—grounded in UX, SEO fundamentals, accessibility, and analytics-ready measurement.",
         url: "https://optimizewebsolutions.com",
-        // THE FIX (Part 2): Use the 'src' from the imported logo image.
         logo: new URL(logoImage.src, Astro.site).toString(),
         image: finalOgImage,
         telephone: "+1-703-599-3188",
@@ -140,7 +139,6 @@ const finalOgImage = image
   <body
     class="min-h-screen flex flex-col text-base sm:text-lg md:text-xl antialiased font-body"
   >
-    {/* Keep the sr-only fix, it's good practice */}
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-accent-secondary focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-accent-primary"

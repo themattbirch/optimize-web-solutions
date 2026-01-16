@@ -6,15 +6,15 @@ import ContentSection from "../components/ContentSection.astro"; // Assuming a r
 const team = [
   {
     name: "Matt Birch",
-    role: "Founder & Full-Stack Engineer",
+    role: "Founder & Web Developer",
     img: "/images/matt-birch-tan-shirt-headshot.png",
-    bio: "Builder at heart with a writer’s clarity. Matt leads end-to-end product delivery—from UX and React front-ends to Node/Supabase back-ends—turning ideas into reliable, scalable software.",
+    bio: "Builder at heart with a writer’s focus on clarity. Matt leads website projects end to end—from UX and content structure to development and launch—helping small businesses create fast, usable sites that are easy to manage and built to last.",
   },
   {
     name: "Alex Chernoff",
     role: "Web Developer",
     img: "/images/alex_chernoff_sweater_headshot.png",
-    bio: "Alex blends sleek micro-interactions with thoughtful front-end architecture. Outside work: cold brew, pickleball, and Real Madrid highlights.",
+    bio: "Alex focuses on front-end execution and interaction design, bringing polish and attention to detail to every build. He helps ensure websites feel responsive, intuitive, and consistent across devices—so users have a smooth experience from first visit to last click.",
   },
 ];
 ---
@@ -46,14 +46,14 @@ const team = [
           A True Partnership, From Idea to Launch
         </h2>
         <p class="mt-6 text-lg text-gray-600 dark:text-gray-300">
-          Work directly with the engineer shipping your product. No layers, no
-          telephone game—just clear goals, rapid iterations, and steady progress
+          Work directly with the person building your website. No layers, no
+          handoffs—just clear goals, thoughtful execution, and steady progress
           you can see.
         </p>
         <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
-          From discovery and UX to architecture, development, and deploy, we
-          keep scope tight and quality high—so your MVP lands on time and scales
-          cleanly.
+          From discovery and UX through design, development, and launch, we keep
+          scope focused and quality high—so your site launches smoothly and is
+          built to last.
         </p>
       </div>
 
@@ -79,64 +79,16 @@ const team = [
       <p
         class="mx-auto mt-16 max-w-2xl text-lg text-gray-600 dark:text-gray-300"
       >
-        Clean UX, fast loads, stable releases. Our performance-first approach
-        improves user experience, search visibility, and conversion—across
-        devices and network conditions.
+        Clean UX, fast load times, and dependable builds. Our performance-first
+        approach improves usability, search visibility, and conversions—across
+        devices, screen sizes, and real-world network conditions.
       </p>
     </div>
 
     <div
       class="mt-16 grid grid-cols-1 gap-8 text-left lg:grid-cols-3 lg:gap-12"
     >
-      <!-- Card 1: React -->
-      <div
-        class="rounded-lg
-        border
-        border-slate-200
-        bg-white
-        p-6
-        shadow-sm
-        dark:border-slate-700
-        dark:bg-slate-800
-        transition-transform
-        duration-300
-        ease-out
-        hover:-translate-y-2
-        hover:shadow-md
-        hover:border-orange-400"
-      >
-        <h3 class="text-lg font-bold text-gray-900 dark:text-white">React</h3>
-        <p class="mt-2 text-gray-600 dark:text-gray-300">
-          Component-driven UIs with smooth interactions and thoughtful state
-          management—built for clarity, reuse, and speed.
-        </p>
-      </div>
-
-      <!-- Card 2: Astro -->
-      <div
-        class="rounded-lg
-        border
-        border-slate-200
-        bg-white
-        p-6
-        shadow-sm
-        dark:border-slate-700
-        dark:bg-slate-800
-        transition-transform
-        duration-300
-        ease-out
-        hover:-translate-y-2
-        hover:shadow-md
-        hover:border-orange-400"
-      >
-        <h3 class="text-lg font-bold text-gray-900 dark:text-white">Astro</h3>
-        <p class="mt-2 text-gray-600 dark:text-gray-300">
-          Server-first rendering and lean bundles for instant first paint,
-          better SEO, and less JavaScript where you don’t need it.
-        </p>
-      </div>
-
-      <!-- Card 3: TypeScript -->
+      <!-- Card 1: UX-Focused Design -->
       <div
         class="rounded-lg
         border
@@ -154,11 +106,67 @@ const team = [
         hover:border-orange-400"
       >
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-          TypeScript
+          UX-Focused Design
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-300">
-          Static typing catches errors early and keeps codebases maintainable—so
-          features ship faster and regressions stay rare.
+          Clear layouts, intuitive navigation, and content structures that make
+          it easy for visitors to understand what you do and take the next step.
+          Design decisions are guided by usability, accessibility, and real user
+          behavior.
+        </p>
+      </div>
+
+      <!-- Card 2: Performance & SEO Foundations -->
+      <div
+        class="rounded-lg
+        border
+        border-slate-200
+        bg-white
+        p-6
+        shadow-sm
+        dark:border-slate-700
+        dark:bg-slate-800
+        transition-transform
+        duration-300
+        ease-out
+        hover:-translate-y-2
+        hover:shadow-md
+        hover:border-orange-400"
+      >
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          Performance & SEO Foundations
+        </h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">
+          Fast load times, clean markup, and search-friendly structure built in
+          from day one. Performance and SEO best practices support
+          discoverability, usability, and long-term site health.
+        </p>
+      </div>
+
+      <!-- Card 3: Maintainable CMS Builds -->
+      <div
+        class="rounded-lg
+        border
+        border-slate-200
+        bg-white
+        p-6
+        shadow-sm
+        dark:border-slate-700
+        dark:bg-slate-800
+        transition-transform
+        duration-300
+        ease-out
+        hover:-translate-y-2
+        hover:shadow-md
+        hover:border-orange-400"
+      >
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          Maintainable CMS Builds
+        </h3>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">
+          Content-driven websites built to be easy to update, scale, and manage
+          over time. Thoughtful CMS structure helps teams stay organized without
+          relying on constant developer support.
         </p>
       </div>
     </div>
@@ -196,11 +204,12 @@ const team = [
       class="container mx-auto flex flex-col items-center gap-6 px-4 py-16 text-center"
     >
       <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">
-        Ready to ship your application?
+        Ready to Start Your Website Project?
       </h2>
       <p class="max-w-2xl text-gray-700 dark:text-gray-300">
-        Schedule a quick, no-pressure chat. We’ll scope the essentials and map
-        the fastest path to a launch-ready build.
+        Schedule a quick, no-pressure conversation. We’ll talk through your
+        goals, outline scope, and map a clear path to a modern, well-built
+        website.
       </p>
       <a
         href="/contact"

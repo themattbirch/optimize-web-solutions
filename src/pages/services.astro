@@ -5,70 +5,78 @@ import Layout from "../layouts/Layout.astro";
 /* ---------- DATA ARRAYS ---------- */
 const coreServices = [
   {
-    title: "MVP & Prototype Builds",
+    title: "Website Design & Development",
     iconBg: "bg-accent-primary/10",
     iconStroke: "text-accent-primary",
     bullets: [
-      "Idea to deploy: scope, UX, build, and launch in weeks—not months",
-      "Reliable React front-ends with Node/Supabase back-ends",
-      "Tight scopes, clean architecture, and clear handoff docs",
+      "Strategy, UX, design, and development—from kickoff to launch",
+      "Clean, responsive layouts built for clarity, accessibility, and usability",
+      "Performance-focused builds that support SEO and fast load times",
     ],
   },
   {
-    title: "Dashboards & Internal Tools",
+    title: "CMS & Content-Driven Websites",
     iconBg: "bg-accent-secondary/10",
     iconStroke: "text-accent-secondary",
     bullets: [
-      "Custom analytics and admin panels tailored to your workflow",
-      "Secure APIs, auth-ready patterns, and role-based access",
-      "Data pipelines that stay fast, observable, and maintainable",
+      "WordPress and modern CMS setups tailored to your content needs",
+      "Thoughtful content structure for easy updates and long-term maintainability",
+      "Secure, reliable foundations that grow with your business",
     ],
   },
   {
-    title: "Full-Stack Web Applications",
+    title: "Performance, SEO & Optimization",
     iconBg: "bg-accent-primary/10",
     iconStroke: "text-accent-primary",
     bullets: [
-      "Modern UX with component-driven React and TypeScript",
-      "Scalable Node services on Postgres/Supabase",
-      "Performance-first builds for speed, stability, and SEO",
+      "Fast, accessible websites built with SEO best practices in mind",
+      "Analytics-ready setups to measure engagement and site performance",
+      "Ongoing improvements to keep your site healthy and effective",
     ],
   },
 ];
 
 const pricingPlans = [
   {
-    name: "Fixed-Scope MVP",
-    tagline: "Idea → UX → Build → Deploy.",
-    price: "From $6,000",
+    name: "Website & Digital Experience Builds",
+    tagline:
+      "Strategy, UX, and implementation for modern, content-driven websites.",
+    price: "From $4,500 – $9,500",
     bullets: [
-      "Discovery & scope definition",
-      "Core features, clean architecture",
-      "Docs + deployment handoff",
+      "Discovery & content structure",
+      "UX & page architecture",
+      "CMS setup (WordPress / headless)",
+      "Performance, accessibility, SEO foundations",
+      "Deployment + handoff",
     ],
-    cta: "Start a Scope Call",
+    cta: "Start a Website Project",
   },
   {
-    name: "Dashboards & Tools",
-    tagline: "Analytics, admin panels, and integrations.",
-    price: "From $3,500",
+    name: "Dashboards, Analytics & Internal Tools",
+    tagline:
+      "Custom dashboards, reporting tools, and integrations that turn data into clarity.",
+    price: "From $5,00",
     bullets: [
-      "Custom dashboards & CRUD flows",
-      "Secure APIs and auth patterns",
+      "Analytics architecture (GA4, GTM, custom events)",
+      "Admin panels & dashboards",
+      "Secure APIs & role-based access",
       "Performance & reliability tuning",
     ],
-    cta: "Request Estimate",
+    cta: "Request an Estimate",
   },
   {
-    name: "Ongoing Partnership",
-    tagline: "Ship continuously with a steady cadence.",
-    price: "Monthly",
+    name: "Ongoing Support & Optimization",
+    tagline:
+      "Continuous improvement for websites and tools that need stability and care.",
+    price: "From $1,500 / month",
     bullets: [
-      "Roadmap planning & iteration",
-      "Feature delivery & maintenance",
-      "Monitoring & performance care",
+      "Content & UX refinements",
+      "Performance monitoring",
+      "SEO & analytics support",
+      "Small feature iterations",
+      "Priority support",
     ],
-    cta: "Discuss Fit",
+    cta: "Discuss a Partnership",
   },
 ];
 ---
@@ -85,19 +93,20 @@ const pricingPlans = [
     <h1
       class="font-heading text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
     >
-      Build the Right Thing — Then Ship It Fast
+      Build the Right Website—Then Launch with Confidence
     </h1>
     <p
       class="mx-auto mt-8 max-w-2xl text-lg text-muted-text dark:text-white/80"
     >
-      We design and build modern applications—MVPs, dashboards, and full-stack
-      web apps— with a lean process and builder-direct collaboration.
+      We design and build modern websites for small businesses, combining clear
+      UX, solid technical foundations, and direct collaboration—without agency
+      overhead or unnecessary complexity.
     </p>
     <a
       href="/contact"
       class="mt-12 inline-flex items-center justify-center rounded-full bg-accent-primary px-8 py-3 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-accent-primary/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-primary/50"
     >
-      Start a Scope Call
+      Start a Project Conversation
     </a>
   </section>
 
@@ -113,7 +122,8 @@ const pricingPlans = [
       <p
         class="mx-auto mt-8 max-w-2xl text-center text-muted-text dark:text-white/80"
       >
-        Three focused offerings to take you from concept to launch—and beyond.
+        Three focused services to help you plan, build, and maintain a modern
+        website.
       </p>
 
       <div
@@ -141,7 +151,6 @@ const pricingPlans = [
                 </svg>
               </div>
               <h3 class="mt-6 text-xl font-semibold">{card.title}</h3>
-              {/* List fix: Removed the specific text-muted-text class to allow color inheritance */}
               <ul class="mt-4 flex flex-col gap-3 text-sm leading-relaxed text-gray-600 dark:text-inherit">
                 {card.bullets.map((b) => (
                   <li class="flex gap-2">
@@ -162,7 +171,7 @@ const pricingPlans = [
       <h2
         class="text-center font-heading text-3xl font-bold sm:text-4xl lg:text-5xl"
       >
-        Clear Engagements — Built Around Outcomes
+        Clear Engagements, Built Around Your Goals
       </h2>
 
       {/* ▼▼▼▼▼ UPDATED CONTAINER ▼▼▼▼▼ */}
@@ -253,17 +262,17 @@ const pricingPlans = [
       <h2
         class="mx-auto max-w-3xl font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
       >
-        Ready to Ship Your Application?
+        Ready to Start Your Website Project?
       </h2>
       <p class="mx-auto mt-6 max-w-2xl text-lg sm:text-xl">
-        Schedule a quick call to map the fastest path from concept to a
-        launch-ready build.
+        Schedule a quick, no-pressure call to discuss your goals, priorities,
+        and the best path forward for a modern, well-built website.
       </p>
       <a
         href="/contact"
         class="mt-10 inline-flex items-center justify-center rounded-xl bg-[#ff5200] px-10 py-4 text-lg font-semibold text-white shadow-lg ring-2 ring-transparent transition-all duration-300 hover:-translate-y-1 hover:bg-[#ff6b00] hover:shadow-xl hover:scale-105"
       >
-        Start Your Build
+        Get in Touch
       </a>
     </div>
   </section>
