@@ -104,7 +104,11 @@ const pricingPlans = [
     </p>
     <a
       href="/contact"
-      class="mt-12 inline-flex items-center justify-center rounded-full bg-accent-primary px-8 py-3 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-accent-primary/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-primary/50"
+      class="mt-12 inline-flex items-center justify-center rounded-xl bg-accent-primary
+         px-10 py-4 text-lg font-semibold text-white shadow-lg
+         transition-all duration-300
+         hover:-translate-y-1 hover:scale-105 hover:bg-accent-primary/90 hover:shadow-xl
+         focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent-primary/40"
     >
       Start a Project Conversation
     </a>
@@ -221,6 +225,9 @@ const pricingPlans = [
     >
     </div>
 
+    {/* White spacer above CTA (no wave) */}
+    <div class="relative h-16 sm:h-24 -z-10 bg-white dark:bg-[#121212]"></div>
+
     {/* Radial spotlight behind content */}
     <div
       class="pointer-events-none absolute inset-0 -z-20"
@@ -228,30 +235,17 @@ const pricingPlans = [
     >
     </div>
 
-    {/* Top wave divider */}
-    <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] -z-10">
-      <svg
-        class="relative block h-[60px] w-[calc(140%+1px)] -translate-x-[20%] fill-[#f3f4f6] dark:fill-[#121212] sm:h-[100px]"
-        viewBox="0 0 1440 100"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0,100 C240,90 480,20 720,20 C960,20 1200,90 1440,100 L1440,0 L0,0 Z"
-        ></path>
-      </svg>
-    </div>
-
     {/* Bottom wave divider */}
     <div
       class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] -z-10 rotate-180"
     >
       <svg
-        class="relative block h-[80px] w-[calc(140%+1px)] -translate-x-[20%] fill-white dark:fill-[#121212] sm:h-[120px]"
+        class="relative block h-[64px] w-[calc(125%+1px)] -translate-x-[12.5%] fill-white dark:fill-[#121212] sm:h-[96px]"
         viewBox="0 0 1440 100"
         preserveAspectRatio="none"
       >
         <path
-          d="M0,100 C240,90 480,20 720,20 C960,20 1200,90 1440,100 L1440,0 L0,0 Z"
+          d="M0,100 C240,85 480,35 720,35 C960,35 1200,85 1440,100 L1440,0 L0,0 Z"
         ></path>
       </svg>
     </div>
@@ -260,9 +254,9 @@ const pricingPlans = [
       class="relative mx-auto w-full max-w-6xl px-6 pt-24 pb-20 sm:px-8 md:pt-28 md:pb-24 lg:px-12"
     >
       <h2
-        class="mx-auto max-w-3xl font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+        class="mx-auto max-w-4xl font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
       >
-        Ready to Start Your Website Project?
+        Let's Talk About Your Website Project
       </h2>
       <p class="mx-auto mt-6 max-w-2xl text-lg sm:text-xl">
         Schedule a quick, no-pressure call to discuss your goals, priorities,

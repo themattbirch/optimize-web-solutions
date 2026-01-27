@@ -4,91 +4,57 @@
 
 <section
   id="final-cta"
-  class="relative overflow-hidden bg-white dark:bg-background text-center text-background dark:text-white"
+  class="relative overflow-hidden text-center text-gray-800 dark:text-white"
 >
-  <!-- Gradient backdrop -->
+  {/* Base fill + subtle dark-mode noise */}
   <div
-    class="absolute inset-0 z-0 bg-gradient-to-tr from-[#FF7E00] via-[#FF9500] to-[#FF5200]"
+    class="absolute inset-0 -z-30 bg-white dark:bg-[#121212] dark:pattern-bg"
   >
   </div>
 
-  <!-- Top wave -->
-  <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-10">
+  {/* White spacer above CTA (keeps top flat, no wave) */}
+  <div class="relative h-16 sm:h-24 -z-10 bg-white dark:bg-[#121212]"></div>
+
+  {/* Radial spotlight behind content */}
+  <div
+    class="pointer-events-none absolute top-12 sm:top-20 left-0 right-0 bottom-0 -z-20"
+    style="background: radial-gradient(circle at 50% 35%, rgba(255,153,0,0.35) 0%, rgba(255,153,0,0.15) 50%, transparent 95%);"
+  >
+  </div>
+
+  {/* Bottom wave divider */}
+  <div
+    class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] -z-10 rotate-180"
+  >
     <svg
-      class="relative block w-[calc(140%+1px)] h-[60px] sm:h-[100px] -translate-x-[20%] fill-white dark:fill-[#121212]"
+      class="relative block h-[80px] w-[calc(140%+1px)] -translate-x-[20%] fill-white dark:fill-[#121212] sm:h-[120px]"
       viewBox="0 0 1440 100"
       preserveAspectRatio="none"
     >
       <path
-        d="M0,100 C240,90 480,20 720,20 C960,20 1200,90 1440,100 L1440,0 L0,0 Z"
+        d="M0,100 C240,85 480,35 720,35 C960,35 1200,85 1440,100 L1440,0 L0,0 Z"
       ></path>
     </svg>
   </div>
 
-  <!-- Bottom wave -->
+  {/* Content */}
   <div
-    class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-10 rotate-180"
+    class="relative mx-auto w-full max-w-6xl px-6 pt-20 pb-20 sm:px-8 md:pt-24 md:pb-24 lg:px-12"
   >
-    <svg
-      class="relative block fill-white dark:fill-[#121212] w-[calc(140%+1px)] h-[60px] sm:h-[100px] -translate-x-[20%]"
-      viewBox="0 0 1440 100"
-      preserveAspectRatio="none"
-    >
-      <path
-        d="M0,100 C240,90 480,20 720,20 C960,20 1200,90 1440,100 L1440,0 L0,0 Z"
-      ></path>
-    </svg>
-  </div>
-
-  <!-- Content -->
-  <div
-    class="relative z-20 mx-auto max-w-2xl px-4 py-[72px] sm:px-6 sm:py-[72px] md:px-8 lg:px-0"
-  >
-    <style is:global>
-      #final-cta h2,
-      #final-cta p {
-        color: #111; /* default */
-      }
-      #final-cta a {
-        background: #111;
-        color: #fff;
-        border: none;
-        text-shadow: none;
-      }
-      #final-cta a:hover {
-        background: #333;
-      }
-
-      .dark #final-cta h2,
-      .dark #final-cta p {
-        color: #111; /* stronger contrast against orange */
-        text-shadow: none; /* remove glow, improves sharpness */
-      }
-
-      .dark #final-cta .bg-gradient-to-tr {
-        background-image: linear-gradient(
-          to top right,
-          #cc5200,
-          #e65c00,
-          #ff7e00
-        );
-      }
-    </style>
-
     <h2
-      class="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+      class="mx-auto max-w-3xl font-heading text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
     >
       Ready to Build a Better Website?
     </h2>
 
-    <p class="mx-auto mt-6 max-w-lg text-base sm:text-lg">
+    <p class="mx-auto mt-6 max-w-2xl text-lg sm:text-xl">
       Whether you’re launching a new site or improving an existing one, we help
       small businesses optimize their web presence.
     </p>
 
     <a
       href="/contact"
-      class="mt-8 inline-flex items-center justify-center rounded-xl bg-white/95 px-8 py-3 text-base font-semibold text-[#ff5200] shadow-lg ring-2 ring-white transition-all duration-300 hover:-translate-y-1 hover:bg-transparent hover:text-white hover:shadow-xl"
+      class="mt-10 inline-flex items-center justify-center rounded-xl bg-[#ff5200] px-10 py-4 text-lg font-semibold text-white shadow-lg ring-2 ring-transparent transition-all duration-300 hover:-translate-y-1 hover:bg-[#ff6b00] hover:shadow-xl hover:scale-105"
     >
       Get a Quote
     </a>
